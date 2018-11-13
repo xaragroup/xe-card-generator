@@ -76,7 +76,8 @@ app.post('/fileupload', (req, res) => {
             //if user submitted an image
             var oldpath = files.filetoupload.path;
             var logoName = makeid();
-            var newpath = __dirname + '/static/' + logoName;
+            var newpath = __dirname + '/static/';
+            var newPathName = newpath + logoName;
             var relativePath = files.filetoupload.name ? "../" + logoName : "";
         }
         //now use relativePath for the logo
@@ -111,10 +112,27 @@ app.post('/fileupload', (req, res) => {
         });
 
         if (relativePath !== "") {
+            /* OLD 
             fs.rename(oldpath, newpath, function (err) {
                 if (err) throw err;
 
-            });
+            });*/
+            //Changed due to https://stackoverflow.com/questions/43206198/what-does-the-exdev-cross-device-link-not-permitted-error-mean
+            fs.copyFile(oldpath, newpath, function(){
+                if(err) {
+                    console.log(new Date());
+                    console.log(err);
+                    throw err;
+                };
+                fs.rename(oldpath, newPathName, function(){
+                    if(err) {
+                        console.log(new Date());
+                        console.log(err);
+                        throw err;
+                    };
+                })
+
+            })
         }
 
         
