@@ -96,13 +96,13 @@ app.post('/fileupload', (req, res) => {
         }*/
         
         const uniq = makeid();
-        var exportURL = __dirname + "/" + uniq + "/index.html";
+        var exportURL = __dirname + "/exports/" + uniq + "/index.html";
         var {card2Gen} = require('./cardBuilder.js');
         const source = card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL);
 
         fs.mkdirSync(uniq);
 
-        fs.writeFile(__dirname + "/" + uniq + "/index.html", source, function (err) {
+        fs.writeFile(__dirname + "/exports/" + uniq + "/index.html", source, function (err) {
             if (err) {
                 return console.log(err);
             }
