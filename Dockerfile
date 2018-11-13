@@ -1,10 +1,12 @@
-FROM node:9.5-alpine
+FROM node:8.10.0
 
 MAINTAINER Marc P <marcp@xara.com>
 
-WORKDIR /home/node/app
+RUN mkdir -p /app
 
-COPY ./package.json /home/node/app/package.json
+WORKDIR /app
+
+COPY ./package.json /app/package.json
 
 RUN npm install npm -g
 RUN npm install --no-bin-links
