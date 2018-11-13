@@ -1,6 +1,8 @@
 const express = require('express');
 const formidable = require('formidable');
 const fs = require('fs');
+const {makeid} = require('./util.js');
+var { card2Gen } = require('./cardBuilder.js');
 
 const app = express();
 const port = 3000;
@@ -8,86 +10,86 @@ app.use(express.static(__dirname + '/static'));
 
 
 
+//HOMEPAGE
 app.get('/', (req, res) => {
     let resources = __dirname + "/resources";
     let backgrounds = resources + "/backgrounds/";
     let cards = resources + "/cards/";
 
     var bgFiles = fs.readdirSync(backgrounds);
-    //console.log(bgFiles)
     bgFiles.forEach(file => {
         fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(backgrounds + file));
     })
 
     var cardFiles = fs.readdirSync(cards);
-    //console.log(cardFiles)
     cardFiles.forEach(file => {
         fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(cards + file));
     })
+
     let { generateInputPage } = require("./inputPage.js");
     var src = generateInputPage(bgFiles, cardFiles);
 
-
-    //res.sendFile(__dirname + '/inputPage.html');
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write(src);
     res.end();
-
-
-
-
-    /* FOLDER STRUCTURE!!
-    let source = __dirname + "/backgrounds/";
-    
-    const { lstatSync, readdirSync } = require('fs');
-    const { join } = require('path');
-    console.log(__dirname)
-    console.log(source)
-    const isDirectory = source => lstatSync(source).isDirectory() //check if its a dir
-    const getDirectories = source => readdirSync(source).map(name => join(source, name)).filter(isDirectory)
-    
-    var dir = getDirectories(source);
-    console.log(dir)
-*/
-
 });
 
 
 
 
 
-
-
-/*
-app.get('/*', (req, res) => {
-    res.sendFile(__dirname + req.originalUrl);
-})
-*/
-
+//Generate Cards
 app.post('/fileupload', (req, res) => {
 
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        //console.log(fields);
 
-        console.log(fields);
-
-         //handle the logo
-        if (files.filetoupload && files.filetoupload.path) {
-            //if user submitted an image
-            var oldpath = files.filetoupload.path;
-            var logoName = makeid();
-            var newpath = __dirname + '/static/';
-            var newPathName = newpath + logoName;
-            var relativePath = files.filetoupload.name ? "../" + logoName : "";
+        var user = {
+            contact : !!fields.contact,
+            email : fields.email
         }
-        //now use relativePath for the logo
-        var contact = !!fields.contact;
-        var email = fields.email;
-        var message = fields.message;
-        var signature = fields.signature;
-        var background = fields.background;
-        var card = fields.card;
-        var isSnowing = !!fields.snowing;
+        if(user.contact){
+            console.log(`Add ${user.email} to database here...`);
+        }
+
+
+        var card = {
+            dir: makeid(),
+            message : fields.message,
+            signature : fields.signature,
+            background : fields.background,
+            card : fields.card,
+            isSnowing : !!fields.snowing,
+            logo : makeid(),
+            source : ""
+        }
+        card.exportURL = __dirname + "/" + card.dir + "/index.html";
+
+        //handle the logo
+        //if user submitted an image
+        if (files.filetoupload && files.filetoupload.path) {
+            //copy the file incl. it's current name
+            //then rename it, cannot do this as 1 action due to a docker issue with renaming across partitions.
+            fs.copyFile(files.filetoupload.path, __dirname + '/static/' + files.filetoupload.name, function () { 
+                if (err) {
+                    console.log(new Date());
+                    console.log(err);
+                    throw err;
+                };
+
+                fs.rename(__dirname + '/static/' + files.filetoupload.name, __dirname + '/static/' + card.logo, function () {
+                    if (err) {
+                        console.log(new Date());
+                        console.log(err);
+                        throw err;
+                    };
+                    console.log(`uploaded file moved to ${__dirname + '/static/' + card.logo}`);
+                    card.logo = "./" + card.logo;
+                })
+
+            })
+        };
 
         /*switch(true){ //this will be required when we offer 2+designs
             case true:
@@ -96,48 +98,19 @@ app.post('/fileupload', (req, res) => {
             break;
         }*/
         
-        const uniq = makeid();
-        var exportURL = __dirname + "/" + uniq + "/index.html";
-        var {card2Gen} = require('./cardBuilder.js');
-        const source = card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL);
+        card.source = card2Gen(card.background, card.card, card.logo, card.message, card.signature, card.isSnowing, card.exportURL);
+        fs.mkdirSync(card.dir);
 
-        fs.mkdirSync(uniq);
-
-        fs.writeFile(__dirname + "/" + uniq + "/index.html", source, function (err) {
+        fs.writeFile(card.exportURL, card.source, function (err) {
             if (err) {
                 return console.log(err);
             }
 
-            console.log("The file was saved! to " + uniq);
+            console.log("The file was saved! to " + card.exportURL);
         });
 
-        if (relativePath !== "") {
-            /* OLD 
-            fs.rename(oldpath, newpath, function (err) {
-                if (err) throw err;
-
-            });*/
-            //Changed due to https://stackoverflow.com/questions/43206198/what-does-the-exdev-cross-device-link-not-permitted-error-mean
-            fs.copyFile(oldpath, newpath, function(){
-                if(err) {
-                    console.log(new Date());
-                    console.log(err);
-                    throw err;
-                };
-                fs.rename(oldpath, newPathName, function(){
-                    if(err) {
-                        console.log(new Date());
-                        console.log(err);
-                        throw err;
-                    };
-                })
-
-            })
-        }
-
-        
         res.setHeader('Content-Type', 'application/json');
-        var send = {url : uniq, message: ""+message};
+        var send = { url: card.exportURL, message: "" + card.message };
         console.log(send.url);
         res.send(send);
 
@@ -160,7 +133,7 @@ app.post('/sendEmails', (req, res) => {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
-        console.log(fields);        
+        console.log(fields);
         res.setHeader('Content-Type', 'application/json');
         var send = {};
         res.send(send);
@@ -171,83 +144,10 @@ app.post('/sendEmails', (req, res) => {
 
 
 
-
-/*
-        if (files.filetoupload && files.filetoupload.path) {
-            //if user submitted an image
-            var oldpath = files.filetoupload.path;
-            var newpath = __dirname + '/static/' + files.filetoupload.name;
-            var relativePath = files.filetoupload.name ? "../" + files.filetoupload.name : "";
-        }
-        //var name = fields.name;
-        var message = fields.message;
-        var company = fields.company;
-        const source = card2Gen(relativePath, message, company);
-        const uniq = makeid();
-
-        fs.mkdirSync(uniq);
+//Going to cards, possibly implement a 404 page?
+app.get('/*', (req, res) => {
+    res.sendFile(__dirname + req.originalUrl + "/index.html");
+})
 
 
-        fs.writeFile(__dirname + "/" + uniq + "/index.html", source, function (err) {
-            if (err) {
-                return console.log(err);
-            }
-
-            console.log("The file was saved! to " + uniq);
-        });
-
-        if (relativePath !== "") {
-            fs.rename(oldpath, newpath, function (err) {
-                if (err) throw err;
-
-            });
-        }
-
-        res.sendFile(__dirname + '/inputPage.html');
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.write(`Thank you for your email ${fields.email}, we created your card:`);
-        res.write(`<a href="./${uniq}/index.html">${uniq} </a>`);
-        res.end();
-        */
-
-
-    app.get('/*', (req, res) => {
-        res.sendFile(__dirname + req.originalUrl + "/index.html");
-    })
-
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
-
-
-
-function makeid() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (var i = 0; i < 8; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-};
-
-
-/*
-const http = require('http');
-var fs = require('fs');
-
-
-const server = http.createServer((req, res) => {
-
-    fs.readFile('inputPage.html', function(err, data) {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        return res.end();
-    });
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-
-*/
+app.listen(port, () => console.log(`Xara Cloud, E-card creator listening on port ${port}!`));

@@ -2,7 +2,7 @@
 //card2Gen(background, card, relativePath, message, signature, isSnowing);
 module.exports.card2Gen = function card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL){
 
-    this.background = background
+    this.background = "../"+background;
     this.cover = "../" + card;
     this.insideLeft = this.cover.replace('_cover', "_inside_left");
     this.insideRight = this.cover.replace('_cover', "_inside_right");
@@ -216,7 +216,7 @@ footer a {
     };`
 
     this.runScripts = `
-    <script src="snow.js"> </script>
+    <script src="./snow.js"> </script>
     <script>
     function updateCardContent() {
         var cardContent = document.querySelector('#insideCard');
@@ -301,7 +301,7 @@ footer a {
         </head>
         
         <body>
-        <div id="background" style="background-image: url(${background});"></div>
+        <div id="background" style="background-image: url(./${background});"></div>
  
         <img id="actualCardPreview-inside-right" src="${this.insideRight}">
 
@@ -309,7 +309,7 @@ footer a {
             <h4 style="font-size: 48px;">${this.message}
             </h4>
             <h5 style="font-size: 31px;">${this.signature}</h5>
-                ${relativePath ? "<img id='logoPreview' src="+relativePath+">" : ""}    
+                ${relativePath ? "<img id='logoPreview' src=./"+relativePath+">" : ""}    
         </div>
 
 
