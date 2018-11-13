@@ -7,6 +7,7 @@ WORKDIR /home/node/app
 COPY ./package.json /home/node/app/package.json
 COPY ./package-lock.json /home/node/app/package-lock.json
 
+RUN npm install npm -g
 RUN npm install
 
 CMD [ "npm", "start" ]
