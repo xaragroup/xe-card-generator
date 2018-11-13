@@ -72,8 +72,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <div><!-- This div acts as a the first child for the snow to be in front of --></div>
          <img id="actualCardPreview-inside-right"></img>
          <div id="insideCard">
-             <h4 contentEditable>Click here to edit your message.
-             </h4>
+             <h4 contentEditable>Click here to edit your message</h4>
              <h5 contentEditable>and don't forget to sign it!</h4>
                  <img id="logoPreview"src="./removeLogo.png"></img>
          </div>
@@ -206,7 +205,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
      </a>
  
      <footer>
-        <p><a href="https://www.xara.com/" target="_blank">Create your own design</a>   |   <a href="https://www.xara.com/" target="_blank">Tell a friend</a>   |   <a href="https://www.xara.com/" target="_blank">Signup to our newsletter</a></p>
+        <p><a href="https://cards.xara.com" target="_blank">Create your own design</a>   |   <a style="cursor: pointer" onclick="alert('link missing')" target="_blank">Signup to our newsletter</a></p>
         <p id="made">… made by the team at <a href="https://www.xara.com" target="_blank"><b>xara.com</b></a></p>
          </footer>
      <!--SCRIPTS -->

@@ -195,15 +195,16 @@ document.querySelectorAll('.card-images').forEach(x => {
         document.querySelector('#toInfo').classList.remove('disabled');
     })})
 
+    var cardURL = "";
     var currentURL = "";
     var currentMessage = "";
     
     document.querySelector('#cardURL').addEventListener('click', function(){
-        window.open("/" + currentURL,'_blank');
+        window.open("/" + cardURL,'_blank');
     })
     document.querySelector('#facebook').addEventListener('click', function(){
         var atag = document.querySelector('#facebook').parentNode;
-        currentURL = "https://www.facebook.com/sharer/sharer.php?u="+"http://benjaminmoses.co.uk/socialTest/1/"; //currentURL
+        currentURL = "https://www.facebook.com/sharer/sharer.php?u="+cardURL; //currentURL
 
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
@@ -211,7 +212,7 @@ document.querySelectorAll('.card-images').forEach(x => {
     })
     document.querySelector('#twitter').addEventListener('click', function(){
         var atag = document.querySelector('#twitter').parentNode;
-        currentURL = `https://twitter.com/share?text=${currentMessage}&url=${"http://benjaminmoses.co.uk/socialTest/1/"}&hashtags=XaraGroup`; //currentURL
+        currentURL = `https://twitter.com/share?text=${currentMessage}&url=${cardURL}&hashtags=XaraGroup`; //currentURL
 
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
@@ -219,14 +220,14 @@ document.querySelectorAll('.card-images').forEach(x => {
     })
     document.querySelector('#linkedin').addEventListener('click', function(){
         var atag = document.querySelector('#linkedin').parentNode;
-        currentURL = `https://www.linkedin.com/shareArticle?mini=true&url=${"http://benjaminmoses.co.uk/socialTest/1/"}&title=${"my ecard"}&summary=${currentMessage}`; //currentURL
+        currentURL = `https://www.linkedin.com/shareArticle?mini=true&url=${cardURL}&title=${"Winter season E-card"}&summary=${currentMessage}`; //currentURL
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
         atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=530');`);
     })
     document.querySelector('#pinterest').addEventListener('click', function(){
         var atag = document.querySelector('#pinterest').parentNode;
-        currentURL = `https://pinterest.com/pin/create/button/?url=${"http://benjaminmoses.co.uk/socialTest/1/"}&media=${"http%3A//benjaminmoses.co.uk/socialTest/facebook_preview.png"}&description=${currentMessage}`; //currentURL
+        currentURL = `https://pinterest.com/pin/create/button/?url=${cardURL}&description=${currentMessage}`; //currentURL
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
         atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
@@ -252,9 +253,9 @@ function sendForm(){
     formData.append("snowing", isSnowing);
     
     xhr.onload  = function() {
-        currentURL = xhr.response.url;
+        currentURL = cardURL = window.location.href + xhr.response.url;
         currentMessage = xhr.response.message;
-        document.querySelector('#cardURL').textContent = window.location.href + currentURL;
+        document.querySelector('#cardURL').textContent = window.location.href + cardURL;
         toggleShare(true);
 
     };
