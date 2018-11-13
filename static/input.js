@@ -200,7 +200,7 @@ document.querySelectorAll('.card-images').forEach(x => {
     var currentMessage = "";
     
     document.querySelector('#cardURL').addEventListener('click', function(){
-        window.open("/" + cardURL,'_blank');
+        window.open(cardURL,'_blank');
     })
     document.querySelector('#facebook').addEventListener('click', function(){
         var atag = document.querySelector('#facebook').parentNode;
