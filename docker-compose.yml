@@ -13,14 +13,14 @@ services:
       - "3000:3000"
     container_name: cards-web
 
-  # cards-db:
-  #   image: postgres:9.6.1
-  #   ports:
-  #     - "5432:5432"      
-  #   environment:
-  #     POSTGRES_USER: cards
-  #     POSTGRES_PASSWORD: T4vbDpJMRGbL0rK
-  #     POSTGRES_DB: cards
-  #     POSTGRES_HOST: "localhost:5432"
-  #   restart: always 
-  #   container_name: cards-db
+  cards-db:
+    image: postgres:9.6.1
+    ports:
+      - "5430:5432"      
+    environment:
+      POSTGRES_USER: cards
+      POSTGRES_PASSWORD: T4vbDpJMRGbL0rK
+      POSTGRES_DB: cards
+      POSTGRES_HOST: "localhost:5432"
+    restart: always 
+    container_name: cards-db

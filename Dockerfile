@@ -1,4 +1,4 @@
-FROM node:8.10.0
+FROM node:9.5-alpine
 
 MAINTAINER Marc P <marcp@xara.com>
 
