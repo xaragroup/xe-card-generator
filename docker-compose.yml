@@ -1,13 +1,17 @@
-version: '3.3'
+version: "2"
 
 services:
   cards-web:
-    image: node
-    restart: always
-    links:
-      - cards-db
-    ports: 
-      - "3000:80"
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "3000"
+    command: "npm start"
     container_name: cards-web
 
   cards-db:
