@@ -11,4 +11,6 @@ COPY ./package.json /app/package.json
 RUN npm install npm -g
 RUN npm install --no-bin-links
 
+RUN chmod +x -R /app
+
 CMD [ "npm", "start" ]
