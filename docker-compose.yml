@@ -4,7 +4,6 @@ services:
   cards-web:
     build: .
     user: "node"
-    working_dir: /home/node/app
     environment:
       - NODE_ENV=production
     volumes:
