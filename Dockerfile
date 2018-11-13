@@ -4,5 +4,4 @@ MAINTAINER Marc P <marcp@xara.com>
 
 RUN npm install
 
-# cmd to start service
 CMD [ "npm", "start" ]
