@@ -9,20 +9,20 @@ app.use(express.static(__dirname + '/static'));
 
 
 app.get('/', (req, res) => {
-    let resources = __dirname + "\\resources";
-    let backgrounds = resources + "\\backgrounds\\";
-    let cards = resources + "\\cards\\";
+    let resources = __dirname + "/resources";
+    let backgrounds = resources + "/backgrounds/";
+    let cards = resources + "/cards/";
 
     var bgFiles = fs.readdirSync(backgrounds);
     //console.log(bgFiles)
     bgFiles.forEach(file => {
-        fs.writeFileSync(__dirname + "\\static\\" + file, fs.readFileSync(backgrounds + file));
+        fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(backgrounds + file));
     })
 
     var cardFiles = fs.readdirSync(cards);
     //console.log(cardFiles)
     cardFiles.forEach(file => {
-        fs.writeFileSync(__dirname + "\\static\\" + file, fs.readFileSync(cards + file));
+        fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(cards + file));
     })
     let { generateInputPage } = require("./inputPage.js");
     var src = generateInputPage(bgFiles, cardFiles);
@@ -194,7 +194,7 @@ app.post('/sendEmails', (req, res) => {
 
 
     app.get('/*', (req, res) => {
-        res.sendFile(__dirname + req.originalUrl + "\\index.html");
+        res.sendFile(__dirname + req.originalUrl + "/index.html");
     })
 
 
