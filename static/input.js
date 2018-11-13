@@ -255,7 +255,7 @@ function sendForm(){
     xhr.onload  = function() {
         currentURL = cardURL = window.location.href + xhr.response.url;
         currentMessage = xhr.response.message;
-        document.querySelector('#cardURL').textContent = window.location.href + cardURL;
+        document.querySelector('#cardURL').textContent = cardURL;
         toggleShare(true);
 
     };
