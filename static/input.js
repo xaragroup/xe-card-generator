@@ -191,6 +191,10 @@ document.querySelectorAll('.card-images').forEach(x => {
         document.querySelector('h4').classList = style;
         document.querySelector('h5').classList = style;
 
+        
+        autofit(document.querySelector('h4'));
+        autofit(document.querySelector('h5'));
+
         var imageLocation = this.parentElement.getAttribute("for");
         cardprv.src = imageLocation;
 
