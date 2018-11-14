@@ -118,13 +118,13 @@ app.post('/fileupload', (req, res) => {
 
             });*/
             //Changed due to https://stackoverflow.com/questions/43206198/what-does-the-exdev-cross-device-link-not-permitted-error-mean
-            fs.copyFile(oldpath, newpath, function(){
+            fs.copyFile(oldpath, newpath+files.filetoupload.name, function(){
                 if(err) {
                     console.log(new Date());
                     console.log(err);
                     throw err;
                 };
-                fs.rename(oldpath, newPathName, function(){
+                fs.rename(newpath+files.filetoupload.name, newPathName, function(){
                     if(err) {
                         console.log(new Date());
                         console.log(err);
