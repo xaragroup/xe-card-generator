@@ -42,10 +42,12 @@ function moveToCenter(){
 };
 
 var goto = "background";
+
+document.getElementById("backButton").addEventListener('click', function(){goToStep(goto)});
+
 var hasSelectedCard = false;
 function goToStep(option){
     
-    document.getElementById("backButton").addEventListener('click', function(){goToStep(goto)});
 
     switch(option){
         case "background":
@@ -63,7 +65,7 @@ function goToStep(option){
         document.querySelector('#form').classList = "hidden";
 
         //close card
-        toggleCard(false);
+        //toggleCard(false);
 
         //back button
         document.querySelector('#backButton').style.opacity = 0;
@@ -90,12 +92,12 @@ function goToStep(option){
         document.querySelector('#form').classList = "hidden";
 
         //close card
-        toggleCard(false);
+        //toggleCard(false);
 
         //backbutton 
         document.querySelector('#backButton').style.opacity = 0.49;
         document.querySelector('#backButton').style.pointerEvents= "auto";
-        var goto = "background";
+        goto = "background";
         
 
         break;
@@ -122,7 +124,7 @@ function goToStep(option){
         //backbutton 
         document.querySelector('#backButton').style.opacity = 0.49;
         document.querySelector('#backButton').style.pointerEvents= "auto";
-        var goto = "card";
+        goto = "card";
         //turn on snow
         if( !document.querySelector('#snowCanvas') ){//only add if snowcanvas exists
             stopSnow = initSnow && initSnow(document.querySelector('#cardPreview'));
@@ -132,8 +134,9 @@ function goToStep(option){
 }
 var stopSnow;
 
-function toggleCard(bool){
-    if(bool){
+function toggleCard(force){
+    cardIsOpen = force || !cardIsOpen;
+    if(cardIsOpen){
         document.querySelector('#actualCardPreview-cover').classList.add("open");
         document.querySelector('#actualCardPreview-inside-left').classList.add("open");
         document.querySelector('#actualCardPreview-inside-right').classList.add("open");
@@ -302,15 +305,13 @@ function toggleShare(bool){
 
 document.querySelector('#cover').addEventListener('click', function(){ toggleShare(false)});
 
-var cardState = false;
+var cardIsOpen = false;
 document.querySelector('#actualCardPreview-inside-left').addEventListener('click', function(){ 
-    toggleCard(cardState)
-    cardState = !cardState;
+    toggleCard(false)
 });
 
 document.querySelector('#actualCardPreview-cover').addEventListener('click', function(){ 
-    toggleCard(cardState)
-    cardState = !cardState;
+    toggleCard(true)
 });
 
 
