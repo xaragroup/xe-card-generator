@@ -4,6 +4,7 @@ MAINTAINER Marc P <marcp@xara.com>
 
 RUN mkdir -p /app
 RUN mkdir -p /app/exports
+RUN mkdir -p /app/static
 
 WORKDIR /app
 
