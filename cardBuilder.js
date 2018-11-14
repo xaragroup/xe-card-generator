@@ -183,7 +183,7 @@ footer a {
     
     
     #insideCard img{
-        height: 100px;
+        height: 22%;
         width: auto;
         max-width: 100%;
         bottom: 5%;
@@ -319,7 +319,7 @@ footer a {
         <img id="actualCardPreview-inside-right" src="${this.insideRight}">
 
         <div id="insideCard">
-            <h4 class="${cardStyling}" style="font-size: 48px; ${this.logo == "" ? "height: 42%;" : "height: 55%;"}">${this.message}
+            <h4 class="${cardStyling}" style="font-size: 48px; ${this.logo == "" ? "height: 55%;" : "height: 42%;"}">${this.message}
             </h4>
             <h5 class="${cardStyling}" style="font-size: 31px; ${this.logo == "" ? "top: 70%; height: 25%;" : "top: 57%; height: 15%;"}">${this.signature}</h5>
                 ${relativePath ? "<img id='logoPreview' src="+relativePath+">" : ""}    
