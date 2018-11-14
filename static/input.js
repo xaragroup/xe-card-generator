@@ -187,6 +187,8 @@ var cardprvInsideRight = document.querySelector('#actualCardPreview-inside-right
 
 document.querySelectorAll('.card-images').forEach(x => { 
     x.addEventListener('click', function(){
+
+        document.querySelector('#cardPreview').classList = this.parentElement.getAttribute("styleAttr");
         var imageLocation = this.parentElement.getAttribute("for");
         cardprv.src = imageLocation;
 

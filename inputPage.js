@@ -38,10 +38,11 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
             if(cardFiles[i].indexOf('cover') > -1){
                 //remove any illegal, or unwanted string from the title                
                 cleanString = cardFiles[i].replace("_cover", "").replace('.jpg', "").replace('.png', "").replace("_", " ").replace("-", " ");
+                styleName = cleanString.replace(" ", "_");
                 //Capitalise the first letter
                 cappedString = cleanString.substr(0, 1).toUpperCase() + cleanString.substr(1);
                 html += `   <input type="radio" name="card" value="${cardFiles[i]}" id="${cardFiles[i]}"> 
-                            <label for="${cardFiles[i]}" class="bg">    
+                            <label styleAttr="${styleName}" for="${cardFiles[i]}" class="bg">    
                                 <div class="card-images" style="background-image:url(${cardFiles[i]})"></div>    
                                 <p class="bg-text">${cappedString}</p> 
                             </label>`;
@@ -62,7 +63,9 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
      <meta charset="UTF-8">
      <title>Xara Cloud's Input page</title>
      <link rel="stylesheet" type="text/css" href="./input.css">
+     <link rel="stylesheet" type="text/css" href="./text_styles.css">
      <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
  </head>
  

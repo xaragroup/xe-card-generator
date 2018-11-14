@@ -296,6 +296,7 @@ footer a {
         <script>
         ${this.script}
         </script>
+        <link rel="stylesheet" type="text/css" href="./text_styles.css">
         <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
         ${this.fbOpenGraph}
         ${this.twitter}
