@@ -17,14 +17,14 @@ module.exports.card2Gen = function card2Gen(background, card, relativePath, mess
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="My E-card" />
     <meta property="og:description"        content="${this.message}" />
-    <meta property="og:image"              content="${exportURL + this.cover}" />
+    <meta property="og:image"              content="../envelope.png" />
     `;
 
     this.twitter = `
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="My E-card">
     <meta name="twitter:description" content="${this.message}" >
-    <meta name="twitter:image" content="${exportURL + this.cover}">`
+    <meta name="twitter:image" content="../envelope.png">`
 
 
     this.xaraBranding = `
@@ -297,7 +297,8 @@ footer a {
         ${this.script}
         </script>
         <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
-        ${this.fbOpenGraph};
+        ${this.fbOpenGraph}
+        ${this.twitter}
         </head>
         
         <body>
