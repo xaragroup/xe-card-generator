@@ -141,7 +141,7 @@ app.post('/fileupload', (req, res) => {
         
 
     var facebookWorkaround = new XMLHttpRequest;
-    facebookWorkaround.open('get', 'https://www.facebook.com/sharer/sharer.php?u='+'http://cards.xara.com/'+uniq+"/index.html", true);
+    facebookWorkaround.open('get', 'https://www.facebook.com/sharer/sharer.php?u='+'https://cards.xara.com/'+uniq+"/index.html", true);
     facebookWorkaround.send();
 
 
