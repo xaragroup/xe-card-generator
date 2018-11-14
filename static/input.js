@@ -215,7 +215,7 @@ document.querySelectorAll('.card-images').forEach(x => {
 
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
+        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');wind.location.reload();`);
     })
     document.querySelector('#twitter').addEventListener('click', function(){
         var atag = document.querySelector('#twitter').parentNode;
@@ -223,7 +223,7 @@ document.querySelectorAll('.card-images').forEach(x => {
 
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `var wind = window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); wind.location.reload();`);
+        atag.setAttribute("OnClick", `var wind = window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
     })
     document.querySelector('#linkedin').addEventListener('click', function(){
         var atag = document.querySelector('#linkedin').parentNode;
