@@ -89,6 +89,8 @@ app.post('/fileupload', (req, res) => {
         var background = fields.background;
         var card = fields.card;
         var isSnowing = !!fields.snowing;
+        var cardStyling = fields.cardStyle;
+        console.log(cardStyling)
 
         /*switch(true){ //this will be required when we offer 2+designs
             case true:
@@ -99,7 +101,7 @@ app.post('/fileupload', (req, res) => {
         
         var exportURL = __dirname +"/exports/"+ uniq + "/index.html";
         var {card2Gen} = require('./cardBuilder.js');
-        const source = card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL);
+        const source = card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL, cardStyling);
 
         //fs.mkdirSync( __dirname +"/exports/"); 
         fs.mkdirSync( __dirname +"/exports/"+ uniq); //"/ 

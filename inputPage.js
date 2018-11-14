@@ -75,8 +75,8 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <div><!-- This div acts as a the first child for the snow to be in front of --></div>
          <img id="actualCardPreview-inside-right"></img>
          <div id="insideCard">
-             <h4 contentEditable>Click here to edit your message</h4>
-             <h5 contentEditable>and don't forget to sign it!</h4>
+             <h4 contentEditable spellcheck="false">Click here to edit your message</h4>
+             <h5 contentEditable spellcheck="false">and don't forget to sign it!</h4>
                  <img id="logoPreview"src="./removeLogo.png"></img>
          </div>
  

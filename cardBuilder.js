@@ -1,6 +1,6 @@
 
 //card2Gen(background, card, relativePath, message, signature, isSnowing);
-module.exports.card2Gen = function card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL){
+module.exports.card2Gen = function card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL, cardStyling){
 
     this.background = "../" + background;
     this.cover = "../" + card;
@@ -120,7 +120,10 @@ footer a {
         backface-visibility: hidden;
     }
 
-        
+    #actualCardPreview-cover, #actualCardPreview-inside-left {
+        cursor: pointer;
+    }
+    
     #actualCardPreview-cover.open {
         transform : translateX(50%) rotateY(180deg) !important;
 
@@ -159,7 +162,6 @@ footer a {
     }
     
     #insideCard h4, #insideCard h5{
-        font-family: 'Mountains of Christmas', cursive;
         font-size: 96px;
         height: 42%;
         margin-block-start: 0;
@@ -168,13 +170,11 @@ footer a {
         margin-inline-end: 0px;
         margin: 5%;
         margin-top: 10%;
-        color: #b01c29;
         text-align: center;
     }
     #insideCard h5{
         font-size: 36px;
         height: 15%;
-        bottom: calc(5% + 100px);
         position: absolute;
         width:90%;
         margin-bottom: 0px;
@@ -192,6 +192,15 @@ footer a {
         right: 0px;
         margin: auto;
         /*display:none;*/
+    }
+
+    
+    /*Max aspect ratio*/
+    @media (max-aspect-ratio: 1/1) {
+        #actualCardPreview-cover, #actualCardPreview-inside-left, #actualCardPreview-inside-right, #insideCard {
+            height: 47vw;
+            width: 47vw;
+        }
     }
     `;
 
@@ -298,6 +307,8 @@ footer a {
         </script>
         <link rel="stylesheet" type="text/css" href="./text_styles.css">
         <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         ${this.fbOpenGraph}
         ${this.twitter}
         </head>
@@ -308,9 +319,9 @@ footer a {
         <img id="actualCardPreview-inside-right" src="${this.insideRight}">
 
         <div id="insideCard">
-            <h4 style="font-size: 48px;">${this.message}
+            <h4 class="${cardStyling}" style="font-size: 48px; ${this.logo == "" ? "height: 42%;" : "height: 55%;"}">${this.message}
             </h4>
-            <h5 style="font-size: 31px;">${this.signature}</h5>
+            <h5 class="${cardStyling}" style="font-size: 31px; ${this.logo == "" ? "top: 70%; height: 25%;" : "top: 57%; height: 15%;"}">${this.signature}</h5>
                 ${relativePath ? "<img id='logoPreview' src="+relativePath+">" : ""}    
         </div>
 

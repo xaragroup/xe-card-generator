@@ -187,8 +187,10 @@ var cardprvInsideRight = document.querySelector('#actualCardPreview-inside-right
 
 document.querySelectorAll('.card-images').forEach(x => { 
     x.addEventListener('click', function(){
+        var style = this.parentElement.getAttribute("styleAttr");
+        document.querySelector('h4').classList = style;
+        document.querySelector('h5').classList = style;
 
-        document.querySelector('#cardPreview').classList = this.parentElement.getAttribute("styleAttr");
         var imageLocation = this.parentElement.getAttribute("for");
         cardprv.src = imageLocation;
 
@@ -251,11 +253,13 @@ function sendForm(){
     
     xhr.responseType = 'json';    
     var cardBig = document.querySelector("h4").innerHTML;
+    var cardStyle = document.querySelector("h4").getAttribute('class');
     var cardSig = document.querySelector("h5").innerHTML;
     var isSnowing = !!document.querySelector('#snowCanvas');
     formData.append("message", cardBig);
     formData.append("signature", cardSig);
     formData.append("snowing", isSnowing);
+    formData.append("cardStyle", cardStyle);
     
     xhr.onload  = function() {
         currentURL = cardURL = window.location.href + xhr.response.url;
@@ -324,17 +328,22 @@ document.querySelector('#closeShare').addEventListener('click', function(){
 var logoPrev = document.querySelector('#logoPreview');
 var logoShowing = true;
 var signature = document.querySelector('h5');
+var message = document.querySelector('h4');
 
 document.querySelector('#logoPreview').addEventListener('click', function(){
     logoPrev.style.display = "none";
-    signature.style.bottom = "calc(5% + 35px)";
+    signature.style.height = "25%";
+    signature.style.top = "70%";
+    message.style.height = "55%";
     logoShowing = !logoShowing;
 })
 
 function showCardLogo(src){
     logoPrev.src = src;
     logoPrev.style.display = "block";
-    signature.style.bottom = "calc(5% + 100px)";
+    signature.style.height = "15%";
+    signature.style.top = "57%";
+    message.style.height = "42%";
     logoShowing = !logoShowing;
 
 }
@@ -345,3 +354,10 @@ document.querySelector('#coverButton').addEventListener('click', function(){
     document.querySelector('#welcomePanel').style.opacity = 0;
     document.querySelector('#welcomePanel').style.pointerEvents = "none";
 })
+
+
+function imageExist(bool){
+    if(bool){
+
+    }else{}
+}

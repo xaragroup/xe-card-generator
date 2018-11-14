@@ -1,18 +1,18 @@
-.merry_christmas h4{
+h4.merry_christmas{
     font-family: 'Mountains of Christmas', cursive;
     color: #b01c29;
 }
-.merry_christmas h5{
+h5.merry_christmas{
     font-family: 'Mountains of Christmas', cursive;
     color: #b01c29;
 }
 
-.christmas_trees h4{
+h4.christmas_trees{
     font-family: 'Dancing Script', cursive;
     color: #323F4A;
 }
 
-.christmas_trees h5{
+h5.christmas_trees{
     font-family: 'Dancing Script', cursive;
     color: #323F4A;
 }
