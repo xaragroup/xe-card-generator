@@ -230,7 +230,7 @@ document.querySelectorAll('.card-images').forEach(x => {
         currentURL = `https://pinterest.com/pin/create/button/?url=${cardURL}&description=${currentMessage}`; //currentURL
         atag.setAttribute("target", "_blank");
         atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
+        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=940');`);
     })
 
 
