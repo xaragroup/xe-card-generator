@@ -71,14 +71,15 @@ app.post('/fileupload', (req, res) => {
 
         console.log(fields);
 
+        const uniq = makeid();
          //handle the logo
         if (files.filetoupload && files.filetoupload.path) {
             //if user submitted an image
             var oldpath = files.filetoupload.path;
             var logoName = makeid();
-            var newpath = __dirname + '/static/';
+            var newpath = __dirname + '/exports/' + uniq + "/";
             var newPathName = newpath + logoName;
-            var relativePath = files.filetoupload.name ? "../" + logoName : "";
+            var relativePath = files.filetoupload.name ? "../" + uniq + "/" + logoName : "";
         }
         //now use relativePath for the logo
         var contact = !!fields.contact;
@@ -96,19 +97,19 @@ app.post('/fileupload', (req, res) => {
             break;
         }*/
         
-        const uniq = makeid();
-        var exportURL = __dirname + "/" + uniq + "/index.html";
+        var exportURL = __dirname +"/exports/"+ uniq + "/index.html";
         var {card2Gen} = require('./cardBuilder.js');
         const source = card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL);
 
-        fs.mkdirSync(uniq);
+        //fs.mkdirSync( __dirname +"/exports/"); 
+        fs.mkdirSync( __dirname +"/exports/"+ uniq); //"/ 
 
-        fs.writeFile(__dirname + "/" + uniq + "/index.html", source, function (err) {
+        fs.writeFile(__dirname + "/exports/" + uniq + "/index.html", source, function (err) {
             if (err) {
                 return console.log(err);
             }
 
-            console.log("The file was saved! to " + uniq);
+            console.log("The file was saved! to " + __dirname + "/exports/" + uniq + "/index.html");
         });
 
         if (relativePath !== "") {
@@ -209,10 +210,11 @@ app.post('/sendEmails', (req, res) => {
         res.write(`<a href="./${uniq}/index.html">${uniq} </a>`);
         res.end();
         */
-
-
+    app.get('/*/', (req, res) => { //image req
+        res.sendFile(__dirname +  "/exports/"+ req.originalUrl);
+    })
     app.get('/*', (req, res) => {
-        res.sendFile(__dirname + req.originalUrl + "/index.html");
+        res.sendFile(__dirname +  "/exports/"+ req.originalUrl +"/");
     })
 
 

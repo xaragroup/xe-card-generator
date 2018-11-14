@@ -2,7 +2,7 @@
 //card2Gen(background, card, relativePath, message, signature, isSnowing);
 module.exports.card2Gen = function card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL){
 
-    this.background = background
+    this.background = "../" + background;
     this.cover = "../" + card;
     this.insideLeft = this.cover.replace('_cover', "_inside_left");
     this.insideRight = this.cover.replace('_cover', "_inside_right");
@@ -70,7 +70,7 @@ module.exports.card2Gen = function card2Gen(background, card, relativePath, mess
         right:40px;
         width: 108.7px;
         height: 31.2px;
-        background-image:url(./XCLOGO.png);
+        background-image:url(../XCLOGO.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: 50% 50%;
@@ -216,7 +216,7 @@ footer a {
     };`
 
     this.runScripts = `
-    <script src="snow.js"> </script>
+    <script src="../snow.js"> </script>
     <script>
     function updateCardContent() {
         var cardContent = document.querySelector('#insideCard');
