@@ -3,6 +3,7 @@ FROM node:8.10.0
 MAINTAINER Marc P <marcp@xara.com>
 
 RUN mkdir -p /app
+RUN mkdir -p /app/exports
 
 WORKDIR /app
 
