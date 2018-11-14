@@ -17,9 +17,9 @@ module.exports.card2Gen = function card2Gen(background, card, relativePath, mess
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="My E-card" />
     <meta property="og:description"        content="${this.message}" />
+    <meta property="og:image:width"        content="1048"/> 
+    <meta property="og:image:height"       content="549"/>
     <meta property="og:image"              content="../envelope.png" />
-    <meta property="og:image:width"        content="513"/> 
-    <meta property="og:image:height"       content="275"/>
     `;
 
     this.twitter = `
