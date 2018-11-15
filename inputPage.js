@@ -157,10 +157,10 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
            Share to: 
         </p>
         
-        <a href="" target="_blank"><div id="facebook" class="social" title="Share to Facebook!"></div> </a>
-        <a href="" target="_blank"><div id="twitter" class="social" title="Share to Twitter!"></div> </a>
-        <a href="" target="_blank"><div id="linkedin" class="social" title="Share to LinkedIn!"></div> </a>
-        <a href="" target="_blank"><div id="pinterest" class="social" title="Share to Pinterest!"></div> </a>
+        <a><div id="facebook" class="social" title="Share to Facebook!"></div> </a>
+        <a><div id="twitter" class="social" title="Share to Twitter!"></div> </a>
+        <a><div id="linkedin" class="social" title="Share to LinkedIn!"></div> </a>
+        <a><div id="pinterest" class="social" title="Share to Pinterest!"></div> </a>
 
         <hr>
         <p id="emailTo">Email:</p>

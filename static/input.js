@@ -346,8 +346,14 @@ function sendEmails(){
 
 function updateShareLinks(cardURL) {
 
-    document.querySelector('#facebook').parentNode.href = "https://www.facebook.com/sharer/sharer.php?u="+cardURL;
-    document.querySelector('#twitter').parentNode.href = "https://twitter.com/share?text=Just created an E-card&url="+cardURL+"&hashtags=XaraGroup";
-    document.querySelector('#linkedin').parentNode.href = "https://www.linkedin.com/shareArticle?mini=true&url"+cardURL+"&title=Xara E-card&summary=Just created my E-card";
-    document.querySelector('#pinterest').parentNode.href = "https://pinterest.com/pin/create/button/?url="+cardURL+"&description=Just created my Xara E-card";
+    var facebookURL = "https://www.facebook.com/sharer/sharer.php?u="+cardURL;
+    var twitterURL = "https://twitter.com/share?text=Just created an E-card&url="+cardURL+"&hashtags=XaraGroup";
+    var linkedinURL = "https://www.linkedin.com/shareArticle?mini=true&url"+cardURL+"&title=Xara E-card&summary=Just created my E-card";
+    var pinterestURL = "https://pinterest.com/pin/create/button/?url="+cardURL+"&description=Just created my Xara E-card";
+
+
+    document.querySelector('#facebook').parentNode.setAttribute("OnClick", `window.open("${facebookURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
+    document.querySelector('#twitter').parentNode.setAttribute("OnClick", `window.open("${twitterURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300');`);
+    document.querySelector('#linkedin').parentNode.setAttribute("OnClick", `window.open("${linkedinURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=530');`);
+    document.querySelector('#pinterest').parentNode.setAttribute("OnClick", `window.open("${pinterestURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=940');`);
 }
