@@ -59,7 +59,7 @@ app.post('/cardGenerator', (req, res) => {
             uniqueName : makeid(),
             src : ""
         }
-        card.exportURL = "https://cards.xara.com" + card.uniqueLocation;
+        card.exportURL = "https://cards.xara.com" + "/" + card.uniqueLocation;
 
         //handle the logo
         //if user submitted an image
