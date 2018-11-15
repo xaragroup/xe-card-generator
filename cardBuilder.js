@@ -10,18 +10,18 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, exportURL){
     this.fbOpenGraph = `
     <meta property="og:url"                content="${exportURL}" />
     <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="My E-card" />
-    <meta property="og:description"        content="My E card" />
+    <meta property="og:title"              content="My Christmas E-card" />
+    <meta property="og:description"        content="Create your very own e-card in seconds with xara.com" />
     <meta property="og:image:width"        content="1048"/> 
     <meta property="og:image:height"       content="549"/>
-    <meta property="og:image"              content="../envelope.png" />
+    <meta property="og:image"              content="https://cards.xara.com/envelope.png" />
     `;
 
     this.twitter = `
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="My E-card">
-    <meta name="twitter:description" content="My E-card" >
-    <meta name="twitter:image" content="../envelope.png">`
+    <meta name="twitter:title" content="My Christmas E-card">
+    <meta name="twitter:description" content="Create your very own e-card in seconds with xara.com" >
+    <meta name="twitter:image" content="https://cards.xara.com/envelope.png">`
 
 
     this.xaraBranding = `
