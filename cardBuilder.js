@@ -29,7 +29,7 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, exportURL){
      </a>
     
     <footer>
-    <p><a href="https://cards.xara.com" target="_blank">Create your own design</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com" target="_blank">This template and many more can be customised further...</a></p>
+    <p><a href="https://cards.xara.com" target="_blank">Create your own E-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com" target="_blank">This template and more can be customised further...</a></p>
     <p id="made">… made by the team at <a href="https://www.xara.com" target="_blank"><b>xara.com</b></a></p>
 </footer>
     
@@ -78,7 +78,10 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, exportURL){
        display: block;
      }
 
-    
+    #coverMessage {
+        pointer-events:none !important;
+    }
+
 footer {
     position:absolute;
     left:0px;
