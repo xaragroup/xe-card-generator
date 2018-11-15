@@ -68,6 +68,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     
 </head>
 
@@ -86,14 +87,14 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 
     <div id="header">
         </h1>
-        <h1 class="" id="backgroundInstructions">Firstly choose your E-card’s background:
+        <h1 class="" id="backgroundInstructions">Start by picking your e-card background
         </h1>
-        <h1 class="hidden" id="cardInstructions">Pick a card design</h1>
+        <h1 class="hidden" id="cardInstructions">Pick your card design</h1>
         <h1 class="" id="backButton">Back
     </div>
 
-    <div class="button disabled" id="toInfo" onclick="goToStep( 'info' )">Next, add your message</div>
-    <div class="button disabled" id="toCards" onclick="goToStep( 'card' )">Choose a card design...</div>
+    <div class="button disabled" id="toInfo" onclick="goToStep( 'info' )">Looking good, click here to add your message</div>
+    <div class="button disabled" id="toCards" onclick="goToStep( 'card' )">Great choice, click here to pick your card design</div>
 
 
 
@@ -111,7 +112,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
             <img id="preview" src="">
 
 
-            <label id="emailLabel">Add your email address: <i>(required)</i></label>
+            <label id="emailLabel">Once you have added your message below enter your email and click Get your e-card.</label>
             <input id="emailInput" type="text" name="email" value="" required>
 
 <!--
@@ -149,7 +150,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     <div id="cover"></div>
     <div id="sharePanel">
         <div id="closeShare" onclick="toggleShare(false)">x</div>
-        <h2>Share your e-card</h2>
+        <h2>Nice job, now share your e-card</h2>
         <p id="publishedTo">Your e-card is published to here:</p>
         <a href="" target="_blank"><p id="cardURL">UNDEFINED</p></a>
         <hr>
@@ -193,7 +194,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <img id="cardCover" src="./intro_card_cover.png">    
 
         </img>
-        <div class="button" id="coverButton" onclick="hideWelcomePanel()">Show some love</div>
+        <div class="button" id="coverButton" onclick="hideWelcomePanel()">Start your design</div>
     </div>
 
 
