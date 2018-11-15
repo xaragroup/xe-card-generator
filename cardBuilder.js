@@ -114,7 +114,7 @@ footer a {
     <script src="snow.js"> </script>
     <script src="input.js"> </script>
     <script> initSnow(document.querySelector('body'));</script>
-    <script>function resizeCard(title = "") {
+    <script>function resizeCard(title) {
         var card = document.querySelector('#card');
         if(!card){
             return;
@@ -139,7 +139,7 @@ footer a {
         }
     };
     window.addEventListener('resize', resizeCard);
-    window.addEventListener('onload', resizeCard);
+    resizeCard();
     document.querySelectorAll('.autoFIT').forEach(el => {
         initAutofit(el);
     })

@@ -33,21 +33,21 @@ function getCardDomTemplate(title) {
                     transition: transform 1s;
                 }
                 .open .sizing{
-                    transform: translateX(50%);
+                    transform: translateX(calc(50% - 1px));
                 }
 
                 .open #card-cover {
-                    transform: translateX(50%) rotateY(180deg);
+                    transform: translateX(calc(50% - 1px)) rotateY(180deg);
                 }
 
                 #card-inside-left {
                     transform-origin: top right;
-                    transform: translateX(-100%) rotateY(180deg);
+                    transform: translateX(calc(-100% + 1px)) rotateY(180deg);
                 }
                 
                 .open #card-inside-left {
                     transform-origin: top right;
-                    transform: translateX(-50%) rotateY(360deg);
+                    transform: translateX(calc(-50% + 1px)) rotateY(360deg);
                 }
 
                 img {
