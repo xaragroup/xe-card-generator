@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     let resources = __dirname + "/resources";
     let backgrounds = resources + "/backgrounds/";
     let cards = resources + "/cards/";
-
+/*
     var bgFiles = fs.readdirSync(backgrounds);
     //console.log(bgFiles)
     bgFiles.forEach(file => {
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     //console.log(cardFiles)
     cardFiles.forEach(file => {
         fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(cards + file));
-    })
+    })*/
     let { generateInputPage } = require("./inputPage.js");
     var src = generateInputPage(bgFiles, cardFiles);
 
