@@ -16,8 +16,7 @@
  
      <div id="cardPreview">
 
-
-
+        <div id="effect"></div>
 
      </div>
  
@@ -49,7 +48,7 @@
  
              <label id="addComp" for="imgupload">Click to add your company logo <i>(optional)</i>
              </label>
-             <input id="imgupload" type="file" name="filetoupload">
+             <input id="imgupload" type="file" name="filetoupload" onclick="updateImage()">
              <img id="preview" src="">
  
  
@@ -209,82 +208,9 @@
      <!--SCRIPTS -->
  
      <script src="previewTemplates.js"></script>
+     <!--<script src="autofit.js"></script>-->
      <script src="input.js"></script>
      <script src="snow.js"></script>
-     <script>
-         /*
-         function updateCardContent() {
-             var cardContent = document.querySelector('#insideCard');
-             cardContent.style.width = "" + cardContent.getBoundingClientRect().height + "px";
-         }
-         updateCardContent();
-         window.addEventListener('resize', updateCardContent)*/
-     </script>
- 
-     <script>
- 
- /*
-         function autofit(element) {
-             if(element.innerText == ""){
-                 //if there is no text, exit immediately
-                 return;
-             }
-
-             element.innerText == element.innerText;
-             
-             var size = parseInt(getComputedStyle(element).fontSize); //cache size
- 
-             //increase till it is overflowing
-             var adjust = 0;
-             while (!isOverflown(element) && adjust < 100) {
-                 element.style.fontSize = (size++) + "px";
-                 element.style.display = 'none';
-                 element.style.display = 'block';
-                 adjust++;
-             }
- 
-             //decrease until it isn't overflowing
-             while (isOverflown(element) && adjust < 100) {
-                 element.style.fontSize = (size--) + "px";
-                 element.style.display = 'none';
-                 element.style.display = 'block';
-                 adjust++;
-             };
-         }
- 
-         function initAutofit(element) {
- 
- 
-             isOverflown = function (element) {
-                 return element.scrollHeight > element.clientHeight; //|| element.scrollWidth > element.clientWidth;
-             }
- 
- 
- 
-             //change string identifier to object
-             if (typeof element != "object") {
-                 element = document.querySelector(element);
-             }
- 
-             element.addEventListener("paste", function (ev) { 
-                 ev.preventDefault();
-             });
-
-             element.addEventListener("input", function () { autofit(element)});
-         };
- 
-         initAutofit('h4');
-         initAutofit('h5');
- 
-         window.addEventListener('resize', function(){
-             autofit(document.querySelector('h4'));
-             autofit(document.querySelector('h5'));
-         })
-         
-         autofit(document.querySelector('h4'));
-         autofit(document.querySelector('h5'));
- */
-     </script>
  </body>
  
  </html>

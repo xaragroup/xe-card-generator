@@ -76,9 +76,9 @@ function getCardDomTemplate(title) {
                 <img src="${title.replace("_cover", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
 
                 <p class="autoFIT" id="message" contenteditable="" spellcheck="false" style="position:absolute; top:10%; bottom:60%; left:5%; right:5%; display: block; font-family: 'Mountains of Christmas', cursive; margin: 0px;">Click here to edit your message</p>
-                <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" style="position:absolute; top: 41%; bottom: 20%; right:5%; left:5%; display: block; font-family: 'Mountains of Christmas', cursive; margin: 0px;">and don't forget to sign it!</p>
+                <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" style="position:absolute; top: 51%; bottom: 30%; right:5%; left:5%; display: block; font-family: 'Mountains of Christmas', cursive; margin: 0px;">and don't forget to sign it!</p>
                 
-                <img id="logoPreview" src="./removeLogo.png">
+                <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" style="position: absolute; bottom: 2%; left: 0px; right: 0px; margin: auto; height: 25%;">
 
             </div>
 
@@ -128,11 +128,8 @@ function getBackgroundDomTemplate(title) {
 
 function getEffectDomTemplate(title) {
     switch (title) {
-        case "snowing":
-            return ` <div id=effect>
-                        <canvas id="snowCanvas" width="1280" height="913" style="position: absolute; left: 0px; top: 0px; pointer-events: none;"></canvas>
-                    </div>`
-            break;
+        case "snow":
+            return `<canvas id="snowCanvas" width="1280" height="913" style="position: absolute; left: 0px; top: 0px; pointer-events: none;"></canvas>`
         case "":
             break;
     }

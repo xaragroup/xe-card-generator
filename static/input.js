@@ -26,6 +26,7 @@ cards.forEach(card => {
     ));
 
     card.addEventListener('click', function () {
+        hasSelectedCard = true;
         var imageLocation = this.parentElement.getAttribute("for");
 
         if (document.querySelector('#card')) {
@@ -38,28 +39,9 @@ cards.forEach(card => {
             initAutofit(element);
         });
         document.querySelector('#toInfo').classList.remove('disabled');
+        window.removeEventListener('resize', resizeCard);
+        window.addEventListener('resize', resizeCard.bind(imageLocation));
     });
-
-    /*
-
-    var style = this.parentElement.getAttribute("styleAttr");
-    document.querySelector('h4').classList = style;
-    document.querySelector('h5').classList = style;
-
-
-    autofit(document.querySelector('h4'));
-    autofit(document.querySelector('h5'));
-
-    var imageLocation = this.parentElement.getAttribute("for");
-    cardprv.src = imageLocation;
-
-    var insideLeftLocation = imageLocation.replace('_cover', "_inside_left");
-    var insideRightLocation = imageLocation.replace('_cover', "_inside_right");
-    cardprvInsideLeft.src = insideLeftLocation;
-    cardprvInsideRight.src = insideRightLocation;
-    hasSelectedCard = true;
-    document.querySelector('#toInfo').classList.remove('disabled');
-    */
 });
 
 
@@ -110,6 +92,7 @@ document.getElementById("backButton").addEventListener('click', function () { go
 
 
 var hasSelectedCard = false;
+var effectEnabled = false;
 function goToStep(option) {
 
 
@@ -161,7 +144,7 @@ function goToStep(option) {
             //backbutton 
             document.querySelector('#backButton').style.opacity = 0.49;
             document.querySelector('#backButton').style.pointerEvents = "auto";
-            goto = "background";
+            currentStep = "background";
 
 
             break;
@@ -180,13 +163,15 @@ function goToStep(option) {
             document.querySelector('#toSubmit').classList = "button";
             document.querySelector('#form').classList = "";
             //open card
-            toggleCard(true);
+            setCardTo("open");
+            //document.getElementById('effect').innerHTML = getEffectDomTemplate("snow");
+
 
 
             //backbutton 
             document.querySelector('#backButton').style.opacity = 0.49;
             document.querySelector('#backButton').style.pointerEvents = "auto";
-            goto = "card";
+            currentStep = "card";
             //turn on snow
             if (!document.querySelector('#snowCanvas')) {//only add if snowcanvas exists
                 stopSnow = initSnow && initSnow(document.querySelector('#cardPreview'));
@@ -208,7 +193,7 @@ function resizeCard(title) {
     switch (title) {
         default:
             [...cardParts].forEach(cardPart => {
-                if (aspectR > 1.6) {
+                if (aspectR > 1.2) {
                     var value = card.getBoundingClientRect().height;
                     cardPart.style.width = 0.80 * value + "px";
                     cardPart.style.height = 0.80 * value + "px";
@@ -233,8 +218,25 @@ function setCardTo(state){
     }
 }
 
+var input = document.querySelector('#imgupload');
+input.addEventListener('change', updateImageDisplay);
 
+function updateImageDisplay(){
+    var src = input.files;
 
+    var image = document.querySelector('#preview');
+    image.style.opacity = 1;
+    image.src = window.URL.createObjectURL(src[0]);
+    document.querySelector('#addComp').style.opacity = 0;
+    
+    document.querySelector('#logoPreview').src = window.URL.createObjectURL(src[0]);
+    document.querySelector('#logoPreview').style.display = "block";
+    this.value = null;
+}
+
+function removeLogo(el){
+    document.querySelector('#logoPreview').style.display = "none";
+};
 
 
 //AUTOFIT
