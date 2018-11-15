@@ -1,39 +1,81 @@
-var bgs = document.querySelectorAll('.bg-images');
-
-bgs.forEach(x => {
-    x.addEventListener('click', moveToCenter.bind( { cont: document.querySelector('#background-picker') , el: x } ))
-})
-
-
-/* to use for cards
+var backgrounds = document.querySelectorAll('.bg-images');
 var cards = document.querySelectorAll('.card-images');
-cards.forEach(x => {
-    x.addEventListener('click', moveToCenter.bind( { cont: document.querySelector('#card-picker') , el: x } ))
+var cardPreview = document.querySelector('#cardPreview');
+
+var currentBackground, currentCard, currentEffect = document.querySelector('#effect');
+
+
+backgrounds.forEach(background => {
+    background.addEventListener('click', moveToCenter.bind({ cont: document.querySelector('#background-picker'), el: background }
+    ));
+
+    background.addEventListener('click', function () {
+        var imageLocation = this.parentElement.getAttribute("for");
+
+        if (document.querySelector('#background')) {
+            document.querySelector('#background').remove();
+        }
+
+        cardPreview.innerHTML = getBackgroundDomTemplate(imageLocation) + cardPreview.innerHTML;
+        document.querySelector('#toCards').classList.remove('disabled');
+    });
 })
-*/
+
+cards.forEach(card => {
+    card.addEventListener('click', moveToCenter.bind({ cont: document.querySelector('#card-picker'), el: card }
+    ));
+
+    card.addEventListener('click', function () {
+        hasSelectedCard = true;
+        var imageLocation = this.parentElement.getAttribute("for");
+
+        if (document.querySelector('#card')) {
+            document.querySelector('#card').remove();
+        }
+
+        cardPreview.innerHTML = cardPreview.innerHTML + getCardDomTemplate(imageLocation);
+        resizeCard(imageLocation);
+        document.querySelectorAll('.autoFIT').forEach(element => {
+            initAutofit(element);
+        });
+        document.querySelector('#toInfo').classList.remove('disabled');
+        window.removeEventListener('resize', resizeCard);
+        window.addEventListener('resize', resizeCard.bind(imageLocation));
+    });
+    card.addEventListener('click', function () {
+        var editables = document.querySelectorAll('[contenteditable=""]');
+        editables.forEach(edit => {
+            var destroy;
+            edit.addEventListener('focus', function () {
+                destroy = initTextEdits(this);
+            });
+            edit.addEventListener('blur', function () {
+                destroy();
+            })
+        })
+    })
+});
 
 
 
-
-
-function moveToCenter(){
+function moveToCenter() {
     var container = this.cont.getBoundingClientRect(); //dimensions for wrapper
 
     var el = this.el; //element to be centered
     var size = el.getBoundingClientRect();
     var max = container.width - window.innerWidth + 50;
 
-    var wantedLeft = (window.innerWidth /2) - (size.width /2);
+    var wantedLeft = (window.innerWidth / 2) - (size.width / 2);
     var current = container.left;
 
     var diff = size.left - wantedLeft; //diff between its current pos and wantedPos
 
-    var setValue = current-diff;
-    if(setValue > 0){
+    var setValue = current - diff;
+    if (setValue > 0) {
         setValue = 0;
     }
 
-    if(setValue < -max){
+    if (setValue < -max) {
         setValue = -max;
     }
 
@@ -41,241 +83,245 @@ function moveToCenter(){
     this.cont.style.left = `${setValue}px`;
 };
 
-var goto = "background";
 
-document.getElementById("backButton").addEventListener('click', function(){goToStep(goto)});
+
+function hideWelcomePanel() {
+    document.querySelector('#welcomePanel').style.opacity = 0;
+    document.querySelector('#welcomePanel').style.pointerEvents = "none";
+};
+
+
+
+
+
+
+
+
+
 
 var hasSelectedCard = false;
-function goToStep(option){
-    
+var effectEnabled = false;
+function goToStep(option) {
 
-    switch(option){
+
+    switch (option) {
         case "background":
-        //show bg
-        document.querySelector('#backgroundInstructions').classList = '';
-        document.querySelector('#background-picker').classList = '';
-        document.querySelector('#toCards').classList = 'button';
-        
-        //hide cards
-        document.querySelector('#cardInstructions').classList = 'hidden';
-        document.querySelector('#card-picker').classList = 'hidden';
+            //show bg
+            document.querySelector('#backgroundInstructions').classList = '';
+            document.querySelector('#background-picker').classList = '';
+            document.querySelector('#toCards').classList = 'button';
 
-        //hide info
-        document.querySelector('#toSubmit').classList = "";
-        document.querySelector('#form').classList = "hidden";
+            //hide cards
+            document.querySelector('#cardInstructions').classList = 'hidden';
+            document.querySelector('#card-picker').classList = 'hidden';
 
-        //close card
-        //toggleCard(false);
+            //hide info
+            document.querySelector('#toSubmit').classList = "";
+            document.querySelector('#form').classList = "hidden";
 
-        //back button
-        document.querySelector('#backButton').style.opacity = 0;
-        document.querySelector('#backButton').style.pointerEvents= "none";
+            //close card
+            //toggleCard(false);
+
+            //back button
+            document.querySelector('#backButton').style.opacity = 0;
+            document.querySelector('#backButton').style.pointerEvents = "none";
 
 
-        break;
+            break;
         case "card":
-        //hide bg
-        document.querySelector('#backgroundInstructions').classList = 'inactive';
-        document.querySelector('#background-picker').classList = 'hidden';
-        document.querySelector('#toCards').classList = 'hidden';
-        
-        //show cards
-        document.querySelector('#cardInstructions').classList = '';
-        document.querySelector('#card-picker').classList = '';
-        document.querySelector('#toInfo').classList = 'button';
-        if( !hasSelectedCard ){
-            document.querySelector('#toInfo').classList.add('disabled');
-        }
-        //hide info
-        
-        document.querySelector('#toSubmit').classList = "";
-        document.querySelector('#form').classList = "hidden";
+            //hide bg
+            document.querySelector('#backgroundInstructions').classList = 'inactive';
+            document.querySelector('#background-picker').classList = 'hidden';
+            document.querySelector('#toCards').classList = 'hidden';
 
-        //close card
-        //toggleCard(false);
+            //show cards
+            document.querySelector('#cardInstructions').classList = '';
+            document.querySelector('#card-picker').classList = '';
+            document.querySelector('#toInfo').classList = 'button';
+            if (!hasSelectedCard) {
+                document.querySelector('#toInfo').classList.add('disabled');
+            }
+            //hide info
 
-        //backbutton 
-        document.querySelector('#backButton').style.opacity = 0.49;
-        document.querySelector('#backButton').style.pointerEvents= "auto";
-        goto = "background";
-        
+            document.querySelector('#toSubmit').classList = "";
+            document.querySelector('#form').classList = "hidden";
 
-        break;
+            //close card
+            //toggleCard(false);
+
+            //backbutton 
+            document.querySelector('#backButton').style.opacity = 0.49;
+            document.querySelector('#backButton').style.pointerEvents = "auto";
+            currentStep = "background";
+
+
+            break;
         case "info":
-        //hide bg
-        document.querySelector('#backgroundInstructions').classList = 'inactive';
-        document.querySelector('#background-picker').classList = 'hidden';
-        document.querySelector('#toCards').classList = 'hidden';
+            //hide bg
+            document.querySelector('#backgroundInstructions').classList = 'inactive';
+            document.querySelector('#background-picker').classList = 'hidden';
+            document.querySelector('#toCards').classList = 'hidden';
 
-        //hide card
-        document.querySelector('#cardInstructions').classList = 'inactive';
-        document.querySelector('#card-picker').classList = 'hidden';
-        document.querySelector('#toInfo').classList = 'hidden';
+            //hide card
+            document.querySelector('#cardInstructions').classList = 'inactive';
+            document.querySelector('#card-picker').classList = 'hidden';
+            document.querySelector('#toInfo').classList = 'hidden';
 
-        //show info
-        document.querySelector('#toSubmit').classList = "button";
-        document.querySelector('#form').classList = "";
-        document.querySelector('#insideCard').style.opacity = 1;//first time going to the info, make the inside card visible;
+            //show info
+            document.querySelector('#toSubmit').classList = "button";
+            document.querySelector('#form').classList = "";
+            //open card
+            setCardTo("open");
+            //document.getElementById('effect').innerHTML = getEffectDomTemplate("snow");
 
-        //open card
-        toggleCard(true);
 
-        
-        //backbutton 
-        document.querySelector('#backButton').style.opacity = 0.49;
-        document.querySelector('#backButton').style.pointerEvents= "auto";
-        goto = "card";
-        //turn on snow
-        if( !document.querySelector('#snowCanvas') ){//only add if snowcanvas exists
+
+            //backbutton 
+            document.querySelector('#backButton').style.opacity = 0.49;
+            document.querySelector('#backButton').style.pointerEvents = "auto";
+            currentStep = "card";
+            //turn on snow
+            if (!document.querySelector('#snowCanvas')) {//only add if snowcanvas exists
+                stopSnow = initSnow && initSnow(document.querySelector('#cardPreview'));
+            }
+            break;
+    }
+}
+
+
+
+function resizeCard(title) {
+    var card = document.querySelector('#card');
+    if (!card) {
+        return;
+    } //if card doesn't exist yet
+
+    var aspectR = window.innerWidth / window.innerHeight; // 1+ wider, 1- taller
+    var cardParts = card.children; //all children element of the card
+    switch (title) {
+        default:
+            [...cardParts].forEach(cardPart => {
+                if (aspectR > 1.2) {
+                    var value = card.getBoundingClientRect().height;
+                    cardPart.style.width = 0.80 * value + "px";
+                    cardPart.style.height = 0.80 * value + "px";
+                } else {
+                    var value = card.getBoundingClientRect().width;
+                    cardPart.style.width = 0.40 * value + "px";
+                    cardPart.style.height = 0.40 * value + "px";
+                }
+            });
+            break;
+    }
+};
+
+
+function setCardTo(state) {
+    var card = document.querySelector('#card');
+    if (state == "open") {
+        card.classList.add('open');
+        if (!document.querySelector('#snowCanvas')) {//only add if snowcanvas exists
             stopSnow = initSnow && initSnow(document.querySelector('#cardPreview'));
         }
-        break;
     }
-}
-var stopSnow;
-
-function toggleCard(force){
-    cardIsOpen = force || !cardIsOpen;
-    if(cardIsOpen){
-        document.querySelector('#actualCardPreview-cover').classList.add("open");
-        document.querySelector('#actualCardPreview-inside-left').classList.add("open");
-        document.querySelector('#actualCardPreview-inside-right').classList.add("open");
-        document.querySelector('#insideCard').classList.add("open");
-        
-    }else{
-        document.querySelector('#actualCardPreview-cover').classList.remove("open");
-        document.querySelector('#actualCardPreview-inside-left').classList.remove("open");
-        document.querySelector('#actualCardPreview-inside-right').classList.remove("open");
-        document.querySelector('#insideCard').classList.remove("open");
+    if (state == "close") {
+        card.classList.remove('open');
     }
 }
 
-var input = document.querySelector('#imgupload');
-input.addEventListener('change', updateImageDisplay);
-
-function updateImageDisplay(){
-    var src = input.files;
-
-    var image = document.querySelector('#preview');
-    image.style.opacity = 1;
-    image.src = window.URL.createObjectURL(src[0]);
-    showCardLogo(window.URL.createObjectURL(src[0]));
-    document.querySelector('#addComp').style.opacity = 0;
 
 
+//AUTOFIT
+
+function isOverflowing(element) {
+    return element.scrollHeight > element.clientHeight; //|| element.scrollWidth > element.clientWidth;
 }
-/*
-var form = document.getElementById("createCardForm");
 
-document.getElementById("toSubmit").addEventListener("click", function () {
-  form.submit();
-});
-*/
-var prv = document.querySelector('#cardPreview');
+function autofit(element) {
+    var limit = 100;
+    if (element.innerText == "") {
+        //if there is no text, exit immediately
+        return;
+    }
+    element.innerText == element.innerText; //cant remember, but i don't think I'd add it in for shits and giggles?
 
-document.querySelectorAll('.bg-images').forEach(x => { 
-    x.addEventListener('click', function(){
-        var imageLocation = this.parentElement.getAttribute("for");
-        prv.style.backgroundImage = `url(${imageLocation})`;
-        document.querySelector('#toCards').classList.remove('disabled');
-    })})
+    var size = parseInt(getComputedStyle(element).fontSize); //cache size
+
+    //increase till it is overflowing
+    var adjust = 0;
+    while (!isOverflowing(element) && adjust < limit) {
+        element.style.fontSize = (size++) + "px";
+        adjust++;
+    }
+
+    //decrease until it isn't overflowing
+    while (isOverflowing(element) && adjust < limit) {
+        element.style.fontSize = (size--) + "px";
+        adjust++;
+    };
+}
 
 
-var cardprv = document.querySelector('#actualCardPreview-cover');
-var cardprvInsideLeft = document.querySelector('#actualCardPreview-inside-left');
-var cardprvInsideRight = document.querySelector('#actualCardPreview-inside-right');
+function initAutofit(element) {
 
-document.querySelectorAll('.card-images').forEach(x => { 
-    x.addEventListener('click', function(){
-        var style = this.parentElement.getAttribute("styleAttr");
-        document.querySelector('h4').classList = style;
-        document.querySelector('h5').classList = style;
+    //change string identifier to object
+    if (typeof element != "object") {
+        element = document.querySelector(element);
+    }
 
-        
-        autofit(document.querySelector('h4'));
-        autofit(document.querySelector('h5'));
+    element.addEventListener("paste", function (ev) {
+        ev.preventDefault();
+    });
 
-        var imageLocation = this.parentElement.getAttribute("for");
-        cardprv.src = imageLocation;
+    element.addEventListener("input", function () {
+        autofit(element);
+    });
 
-        var insideLeftLocation = imageLocation.replace('_cover', "_inside_left");
-        var insideRightLocation = imageLocation.replace('_cover', "_inside_right");
-        cardprvInsideLeft.src = insideLeftLocation;
-        cardprvInsideRight.src = insideRightLocation;
-        hasSelectedCard = true;
-        document.querySelector('#toInfo').classList.remove('disabled');
-    })})
-
-    var cardURL = "";
-    var currentURL = "";
-    var currentMessage = "";
-    
-    document.querySelector('#cardURL').addEventListener('click', function(){
-        window.open(cardURL,'_blank');
-    })
-    document.querySelector('#facebook').addEventListener('click', function(){
-        var atag = document.querySelector('#facebook').parentNode;
-        currentURL = "https://www.facebook.com/sharer/sharer.php?u="+cardURL; //currentURL
-
-        atag.setAttribute("target", "_blank");
-        atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
-    })
-    document.querySelector('#twitter').addEventListener('click', function(){
-        var atag = document.querySelector('#twitter').parentNode;
-        currentURL = `https://twitter.com/share?text=${currentMessage}&url=${cardURL}&hashtags=XaraGroup`; //currentURL
-
-        atag.setAttribute("target", "_blank");
-        atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');`);
-    })
-    document.querySelector('#linkedin').addEventListener('click', function(){
-        var atag = document.querySelector('#linkedin').parentNode;
-        currentURL = `https://www.linkedin.com/shareArticle?mini=true&url=${cardURL}&title=${"Winter season E-card"}&summary=${currentMessage}`; //currentURL
-        atag.setAttribute("target", "_blank");
-        atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=530');`);
-    })
-    document.querySelector('#pinterest').addEventListener('click', function(){
-        var atag = document.querySelector('#pinterest').parentNode;
-        currentURL = `https://pinterest.com/pin/create/button/?url=${cardURL}&description=${currentMessage}`; //currentURL
-        atag.setAttribute("target", "_blank");
-        atag.setAttribute("href", `${currentURL}`);
-        atag.setAttribute("OnClick", `window.open("${currentURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=940');`);
+    window.addEventListener('resize', function () {
+        autofit(element);
+        autofit(element);
     })
 
+    autofit(element);
+};
 
-function sendForm(){
+
+function initTextEdits(el) {
+    console.log('build')
+    /*
+    var position = el.getBoundingClientRect();
+
+    retun;// function to destroy;*/
+    return function () { console.log('destroy') };
+}
+
+
+function sendForm() {
     var formData = new FormData(document.querySelector('#createCardForm'));
     var xhr = new XMLHttpRequest;
-    var emailInput = document.querySelector('#emailInput')
-    if(emailInput.value == ""){
+    var emailInput = document.querySelector('#emailInput');
+    if (emailInput.value == "") {
         alert('Please insert an email address.');
         emailInput.style.backgroundColor = "lightyellow";
         return;
     }
-    
-    xhr.responseType = 'json';    
-    var cardBig = document.querySelector("h4").innerHTML;
-    var cardStyle = document.querySelector("h4").getAttribute('class');
-    var cardSig = document.querySelector("h5").innerHTML;
-    var isSnowing = !!document.querySelector('#snowCanvas');
-    formData.append("message", cardBig);
-    formData.append("signature", cardSig);
-    formData.append("snowing", isSnowing);
-    formData.append("cardStyle", cardStyle);
-    
-    xhr.onload  = function() {
-        currentURL = cardURL = window.location.href + xhr.response.url;
-        currentMessage = xhr.response.message;
-        document.querySelector('#cardURL').textContent = cardURL;
-        toggleShare(true);
 
+    xhr.responseType = 'json';
+    var cardContent = document.querySelector('#cardPreview').innerHTML.replace(/contenteditable/g, "").replace(/class="open"/g, "");
+    formData.append("cardContent", cardContent);
+
+    xhr.onload = function () {
+        currentURL = cardURL = window.location.href + xhr.response.url;
+        document.querySelector('#cardURL').textContent = cardURL;
+        document.querySelector('#cardURL').parentNode.href = cardURL;
+        updateShareLinks(cardURL);
+        toggleShare(true);
     };
 
-    xhr.open('post', '/fileupload', true);
+    xhr.open('post', '/cardGenerator', true);
     xhr.send(formData);
 }
+
 
 function sendEmails(){
     var formData = new FormData(document.querySelector('#sendEmailForm'));
@@ -298,70 +344,10 @@ function sendEmails(){
     xhr.send(formData);
 }
 
+function updateShareLinks(cardURL) {
 
-
-
-var share = document.querySelector('#sharePanel');
-var cover = document.querySelector('#cover');
-function toggleShare(bool){
-    if(bool){
-        cover.style.display = "block";
-        share.style.display = "block";
-    }else {
-        cover.style.display = "none";
-        share.style.display = "none";
-    }
-}
-
-document.querySelector('#cover').addEventListener('click', function(){ toggleShare(false)});
-
-var cardIsOpen = false;
-document.querySelector('#actualCardPreview-inside-left').addEventListener('click', function(){ 
-    toggleCard(false)
-});
-
-document.querySelector('#actualCardPreview-cover').addEventListener('click', function(){ 
-    toggleCard(true)
-});
-
-
-document.querySelector('#closeShare').addEventListener('click', function(){
-    toggleShare(false)
-});
-
-var logoPrev = document.querySelector('#logoPreview');
-var logoShowing = true;
-var signature = document.querySelector('h5');
-var message = document.querySelector('h4');
-
-document.querySelector('#logoPreview').addEventListener('click', function(){
-    logoPrev.style.display = "none";
-    signature.style.height = "25%";
-    signature.style.top = "70%";
-    message.style.height = "55%";
-    logoShowing = !logoShowing;
-})
-
-function showCardLogo(src){
-    logoPrev.src = src;
-    logoPrev.style.display = "block";
-    signature.style.height = "15%";
-    signature.style.top = "57%";
-    message.style.height = "42%";
-    logoShowing = !logoShowing;
-
-}
-
-
-document.querySelector('#coverButton').addEventListener('click', function(){
-    //document.querySelector('#welcomePanel').style.top = "-100vh";
-    document.querySelector('#welcomePanel').style.opacity = 0;
-    document.querySelector('#welcomePanel').style.pointerEvents = "none";
-})
-
-
-function imageExist(bool){
-    if(bool){
-
-    }else{}
+    document.querySelector('#facebook').parentNode.href = "https://www.facebook.com/sharer/sharer.php?u="+cardURL;
+    document.querySelector('#twitter').parentNode.href = "https://twitter.com/share?text=Just created an E-card&url="+cardURL+"&hashtags=XaraGroup";
+    document.querySelector('#linkedin').parentNode.href = "https://www.linkedin.com/shareArticle?mini=true&url"+cardURL+"&title=Xara E-card&summary=Just created my E-card";
+    document.querySelector('#pinterest').parentNode.href = "https://pinterest.com/pin/create/button/?url="+cardURL+"&description=Just created my Xara E-card";
 }

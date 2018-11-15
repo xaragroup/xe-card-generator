@@ -10,25 +10,22 @@
      <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+     
  </head>
  
  <body>
  
      <div id="cardPreview">
-        <div><!-- This div acts as a the first child for the snow to be in front of --></div>
-         <img id="actualCardPreview-inside-right"></img>
-         <div id="insideCard">
-             <h4 contentEditable>Click here to edit your message</h4>
-             <h5 contentEditable>and don't forget to sign it!</h4>
-                 <img id="logoPreview"src="./removeLogo.png"></img>
-         </div>
- 
- 
-         <img id="actualCardPreview-inside-left"></img>
-         <img id="actualCardPreview-cover"></img>
- 
+
+        <div id="effect"></div>
+
      </div>
  
+
+
+
+
  
      <div id="header">
          </h1>
@@ -77,7 +74,15 @@
          <div class="overflowHandler">
          <div class="hidden" id="card-picker">
                 
-                 <input type="radio" name="card" value="christmas_trees_cover.png" id="christmas_trees_cover.png"> 
+                 <input type="radio" name="card" value="a_real_estate_cover.png" id="a_real_estate_cover.png"> 
+                            <label styleAttr="a_real_estate" for="a_real_estate_cover.png" class="bg">    
+                                <div class="card-images" style="background-image:url(a_real_estate_cover.png)"></div>    
+                                <p class="bg-text">A real_estate</p> 
+                            </label>   <input type="radio" name="card" value="b_real_estate_cover.png" id="b_real_estate_cover.png"> 
+                            <label styleAttr="b_real_estate" for="b_real_estate_cover.png" class="bg">    
+                                <div class="card-images" style="background-image:url(b_real_estate_cover.png)"></div>    
+                                <p class="bg-text">B real_estate</p> 
+                            </label>   <input type="radio" name="card" value="christmas_trees_cover.png" id="christmas_trees_cover.png"> 
                             <label styleAttr="christmas_trees" for="christmas_trees_cover.png" class="bg">    
                                 <div class="card-images" style="background-image:url(christmas_trees_cover.png)"></div>    
                                 <p class="bg-text">Christmas trees</p> 
@@ -85,6 +90,22 @@
                             <label styleAttr="merry_christmas" for="merry_christmas_cover.png" class="bg">    
                                 <div class="card-images" style="background-image:url(merry_christmas_cover.png)"></div>    
                                 <p class="bg-text">Merry christmas</p> 
+                            </label>   <input type="radio" name="card" value="penguin_snow_cover.png" id="penguin_snow_cover.png"> 
+                            <label styleAttr="penguin_snow" for="penguin_snow_cover.png" class="bg">    
+                                <div class="card-images" style="background-image:url(penguin_snow_cover.png)"></div>    
+                                <p class="bg-text">Penguin snow</p> 
+                            </label>   <input type="radio" name="card" value="red_bauble_cover.png" id="red_bauble_cover.png"> 
+                            <label styleAttr="red_bauble" for="red_bauble_cover.png" class="bg">    
+                                <div class="card-images" style="background-image:url(red_bauble_cover.png)"></div>    
+                                <p class="bg-text">Red bauble</p> 
+                            </label>   <input type="radio" name="card" value="seasons_greetings_cover.png" id="seasons_greetings_cover.png"> 
+                            <label styleAttr="seasons_greetings" for="seasons_greetings_cover.png" class="bg">    
+                                <div class="card-images" style="background-image:url(seasons_greetings_cover.png)"></div>    
+                                <p class="bg-text">Seasons greetings</p> 
+                            </label>   <input type="radio" name="card" value="white_bauble_cover.png" id="white_bauble_cover.png"> 
+                            <label styleAttr="white_bauble" for="white_bauble_cover.png" class="bg">    
+                                <div class="card-images" style="background-image:url(white_bauble_cover.png)"></div>    
+                                <p class="bg-text">White bauble</p> 
                             </label>
          </div>
          </div>
@@ -106,14 +127,6 @@
                         <label for="gold_bauble.jpg" class="bg">    
                         <div class="bg-images" style="background-image:url(gold_bauble.jpg)"></div>    
                         <p class="bg-text">Gold bauble</p> 
-                        </label>   <input type="radio" name="background" value="gold_lights.jpg" id="gold_lights.jpg">
-                        <label for="gold_lights.jpg" class="bg">    
-                        <div class="bg-images" style="background-image:url(gold_lights.jpg)"></div>    
-                        <p class="bg-text">Gold lights</p> 
-                        </label>   <input type="radio" name="background" value="merry_xmas.jpg" id="merry_xmas.jpg">
-                        <label for="merry_xmas.jpg" class="bg">    
-                        <div class="bg-images" style="background-image:url(merry_xmas.jpg)"></div>    
-                        <p class="bg-text">Merry xmas</p> 
                         </label>   <input type="radio" name="background" value="silver_bauble.jpg" id="silver_bauble.jpg">
                         <label for="silver_bauble.jpg" class="bg">    
                         <div class="bg-images" style="background-image:url(silver_bauble.jpg)"></div>    
@@ -181,7 +194,7 @@
          <img id="cardCover" src="./intro_card_cover.png">    
  
          </img>
-         <div class="button" id="coverButton">Show some love</div>
+         <div class="button" id="coverButton" onclick="hideWelcomePanel()">Show some love</div>
      </div>
  
  
@@ -196,81 +209,10 @@
          </footer>
      <!--SCRIPTS -->
  
+     <script src="previewTemplates.js"></script>
+     <!--<script src="autofit.js"></script>-->
      <script src="input.js"></script>
      <script src="snow.js"></script>
-     <script>
-         function updateCardContent() {
-             var cardContent = document.querySelector('#insideCard');
-             cardContent.style.width = "" + cardContent.getBoundingClientRect().height + "px";
-         }
-         updateCardContent();
-         window.addEventListener('resize', updateCardContent)
-     </script>
- 
-     <script>
- 
- 
-         function autofit(element) {
-             if(element.innerText == ""){
-                 //if there is no text, exit immediately
-                 return;
-             }
-
-             element.innerText == element.innerText;
-             
-             var size = parseInt(getComputedStyle(element).fontSize); //cache size
- 
-             //increase till it is overflowing
-             var adjust = 0;
-             while (!isOverflown(element) && adjust < 100) {
-                 element.style.fontSize = (size++) + "px";
-                 element.style.display = 'none';
-                 element.style.display = 'block';
-                 adjust++;
-             }
- 
-             //decrease until it isn't overflowing
-             while (isOverflown(element) && adjust < 100) {
-                 element.style.fontSize = (size--) + "px";
-                 element.style.display = 'none';
-                 element.style.display = 'block';
-                 adjust++;
-             };
-         }
- 
-         function initAutofit(element) {
- 
- 
-             isOverflown = function (element) {
-                 return element.scrollHeight > element.clientHeight; //|| element.scrollWidth > element.clientWidth;
-             }
- 
- 
- 
-             //change string identifier to object
-             if (typeof element != "object") {
-                 element = document.querySelector(element);
-             }
- 
-             element.addEventListener("paste", function (ev) { 
-                 ev.preventDefault();
-             });
-
-             element.addEventListener("input", function () { autofit(element)});
-         };
- 
-         initAutofit('h4');
-         initAutofit('h5');
- 
-         window.addEventListener('resize', function(){
-             autofit(document.querySelector('h4'));
-             autofit(document.querySelector('h5'));
-         })
-         
-         autofit(document.querySelector('h4'));
-         autofit(document.querySelector('h5'));
- 
-     </script>
  </body>
  
  </html>

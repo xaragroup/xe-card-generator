@@ -1,6 +1,7 @@
 const express = require('express');
 const formidable = require('formidable');
 const fs = require('fs');
+var {card2Gen} = require('./cardBuilder.js');
 
 const app = express();
 const port = 3000;
@@ -34,116 +35,72 @@ app.get('/', (req, res) => {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write(src);
     res.end();
-
-
-
-
-    /* FOLDER STRUCTURE!!
-    let source = __dirname + "/backgrounds/";
-    
-    const { lstatSync, readdirSync } = require('fs');
-    const { join } = require('path');
-    console.log(__dirname)
-    console.log(source)
-    const isDirectory = source => lstatSync(source).isDirectory() //check if its a dir
-    const getDirectories = source => readdirSync(source).map(name => join(source, name)).filter(isDirectory)
-    
-    var dir = getDirectories(source);
-    console.log(dir)
-*/
-
 });
 
 
 
-
-
-
-
-/*
-app.get('/*', (req, res) => {
-    res.sendFile(__dirname + req.originalUrl);
-})
-*/
-
-app.post('/fileupload', (req, res) => {
+app.post('/cardGenerator', (req, res) => {
 
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
-        console.log(fields);
-
-        const uniq = makeid();
-         //handle the logo
-        if (files.filetoupload && files.filetoupload.path) {
-            //if user submitted an image
-            var oldpath = files.filetoupload.path;
-            var logoName = makeid();
-            var newpath = __dirname + '/exports/' + uniq + "/";
-            var newPathName = newpath + logoName;
-            var relativePath = files.filetoupload.name ? "../" + uniq + "/" + logoName : "";
+        var user = {
+            email : fields.email,
+            contact : !!fields.contact
         }
-        //now use relativePath for the logo
-        var contact = !!fields.contact;
-        var email = fields.email;
-        var message = fields.message;
-        var signature = fields.signature;
-        var background = fields.background;
-        var card = fields.card;
-        var isSnowing = !!fields.snowing;
-        var cardStyling = fields.cardStyle;
-        console.log(cardStyling)
 
-        /*switch(true){ //this will be required when we offer 2+designs
-            case true:
-            var {card2Gen} = require('./cardBuilder.js');
+       // console.log(fields)
 
-            break;
-        }*/
-        
-        var exportURL = __dirname +"/exports/"+ uniq + "/index.html";
-        var {card2Gen} = require('./cardBuilder.js');
-        const source = card2Gen(background, card, relativePath, message, signature, isSnowing, exportURL, cardStyling);
+        var card = {
+            cardContents : fields.cardContent,
+            imageLocation : "" && files.filetoupload && files.filetoupload.path,
+            imageName : "" && files.filetoupload && files.filetoupload.name,
+            uniqueLocation : makeid(),
+            uniqueName : makeid(),
+            src : ""
+        }
+        card.exportURL = "https://cards.xara.com" + card.uniqueLocation;
 
-        //fs.mkdirSync( __dirname +"/exports/"); 
-        fs.mkdirSync( __dirname +"/exports/"+ uniq); //"/ 
-
-        fs.writeFile(__dirname + "/exports/" + uniq + "/index.html", source, function (err) {
-            if (err) {
-                return console.log(err);
-            }
-
-            console.log("The file was saved! to " + __dirname + "/exports/" + uniq + "/index.html");
-        });
-
-        if (relativePath !== "") {
-            /* OLD 
-            fs.rename(oldpath, newpath, function (err) {
-                if (err) throw err;
-
-            });*/
-            //Changed due to https://stackoverflow.com/questions/43206198/what-does-the-exdev-cross-device-link-not-permitted-error-mean
-            fs.copyFile(oldpath, newpath+files.filetoupload.name, function(){
+        //handle the logo
+        //if user submitted an image
+        if (card.imageLocation != "" && card.imageName != ""){
+            fs.copyFile(card.imageLocation, __dirname + '/exports/' + card.uniqueLocation + "/" + card.imageName, function(){
                 if(err) {
                     console.log(new Date());
                     console.log(err);
                     throw err;
                 };
-                fs.rename(newpath+files.filetoupload.name, newPathName, function(){
+                card.imageLocation = __dirname + '/exports/' + card.uniqueLocation + "/" + card.imageName;
+                console.log('Logo moved to :' + card.imageLocation);
+
+                fs.rename(card.imageLocation, __dirname + '/exports/' + card.uniqueLocation + "/" + card.uniqueName, function(){
                     if(err) {
                         console.log(new Date());
                         console.log(err);
                         throw err;
                     };
+
+                    card.imageLocation = __dirname + '/exports/' + card.uniqueLocation + "/" + card.uniqueName;
+                    console.log('Logo renamed to :' + card.imageLocation);
                 })
 
             })
-        }
 
+        }
         
+        
+        card.src = card2Gen(card.cardContents, card.imageName, card.exportURL);
+
+        fs.mkdirSync( __dirname +"/exports/"+ card.uniqueLocation)
+        fs.writeFile( __dirname +"/exports/"+ card.uniqueLocation+ "/index.html", card.src, function (err) {
+            if (err) {
+                return console.log(err);
+            }
+
+            console.log("The file was saved! to " + __dirname +"/exports/"+ card.uniqueLocation+ "/index.html");
+        });        
         res.setHeader('Content-Type', 'application/json');
-        var send = {url : uniq, message: ""+message};
-        console.log(send.url);
+        var send = {url : card.uniqueLocation};
         res.send(send);
 
     })
@@ -175,45 +132,6 @@ app.post('/sendEmails', (req, res) => {
 
 
 
-
-
-/*
-        if (files.filetoupload && files.filetoupload.path) {
-            //if user submitted an image
-            var oldpath = files.filetoupload.path;
-            var newpath = __dirname + '/static/' + files.filetoupload.name;
-            var relativePath = files.filetoupload.name ? "../" + files.filetoupload.name : "";
-        }
-        //var name = fields.name;
-        var message = fields.message;
-        var company = fields.company;
-        const source = card2Gen(relativePath, message, company);
-        const uniq = makeid();
-
-        fs.mkdirSync(uniq);
-
-
-        fs.writeFile(__dirname + "/" + uniq + "/index.html", source, function (err) {
-            if (err) {
-                return console.log(err);
-            }
-
-            console.log("The file was saved! to " + uniq);
-        });
-
-        if (relativePath !== "") {
-            fs.rename(oldpath, newpath, function (err) {
-                if (err) throw err;
-
-            });
-        }
-
-        res.sendFile(__dirname + '/inputPage.html');
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.write(`Thank you for your email ${fields.email}, we created your card:`);
-        res.write(`<a href="./${uniq}/index.html">${uniq} </a>`);
-        res.end();
-        */
     app.get('/*/', (req, res) => { //image req
         res.sendFile(__dirname +  "/exports/"+ req.originalUrl);
     })
@@ -236,24 +154,3 @@ function makeid() {
 
     return text;
 };
-
-
-/*
-const http = require('http');
-var fs = require('fs');
-
-
-const server = http.createServer((req, res) => {
-
-    fs.readFile('inputPage.html', function(err, data) {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        return res.end();
-    });
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-
-*/
