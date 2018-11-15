@@ -74,7 +74,7 @@ function getCardDomTemplate(title) {
             <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
                 <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
 
-                <p class="autoFIT" id="message" contenteditable="" spellcheck="false" style="position:absolute; top:10%; bottom:60%; left:5%; right:5%; display: block; color:white; text-align: center; font-family: 'Mountains of Christmas', cursive; margin: 0px;">Click here to edit your message</p>
+                <p class="autoFIT" id="message" contenteditable="" spellcheck="false" style="position:absolute; top:10%; bottom:60%; left:5%; right:5%; display: block; color:white; text-align: center; font-family: 'Mountains of Christmas', cursive; margin: 0px;">Click here to edit your message, you can also close the card and edit the cover!</p>
                 <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" style="position:absolute; top: 51%; bottom: 30%; right:5%; left:5%; display: block; color:white; text-align: center; font-family: 'Mountains of Christmas', cursive; margin: 0px;">and don't forget to sign it!</p>
                 
                 <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" style="position: absolute; bottom: 2%; left: 0px; right: 0px; margin: auto; height: 25%;">
@@ -83,11 +83,11 @@ function getCardDomTemplate(title) {
 
 
             <div class="sizing" id="card-inside-left" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
-                <img onclick="setCardTo('close')" src="${title.replace("_thumb", "_inside_left")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+                <img onmousedown="setCardTo('close')" src="${title.replace("_thumb", "_inside_left")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
             </div>
 
             <div class="sizing" id="card-cover" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto">
-                <img onclick="setCardTo('open')" src="${title.replace("_thumb", "_cover")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+                <img onmousedown="setCardTo('open')" src="${title.replace("_thumb", "_cover")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
                 <p id="coverMessage" class="autoFIT" contentEditable="" spellcheck="false" style="position:absolute; top: 5%; bottom: 60%; right:5%; left:20%; display: block; color:white; font-family: 'Pacifico', cursive; margin: 0px; text-align: right;">Merry Christmas \n in your new home!</p>
                 </div>
         </div>
