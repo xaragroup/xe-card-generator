@@ -69,6 +69,14 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, exportURL){
         background-repeat: no-repeat;
         background-position: 50% 50%;
     }
+    img {
+        display: none;
+    }
+    
+    
+    img[src] {
+       display: block;
+     }
 
     
 footer {

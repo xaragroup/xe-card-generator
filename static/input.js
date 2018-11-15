@@ -307,7 +307,7 @@ function sendForm() {
     }
 
     xhr.responseType = 'json';
-    var cardContent = document.querySelector('#cardPreview').innerHTML.replace(/contenteditable/g, "").replace(/class="open"/g, "");
+    var cardContent = document.querySelector('#cardPreview').innerHTML.replace(/contenteditable/g, "").replace(/class="open"/g, "").replace(/.\/removeLogo.png/g, "");
     formData.append("cardContent", cardContent);
 
     xhr.onload = function () {
