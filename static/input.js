@@ -42,6 +42,18 @@ cards.forEach(card => {
         window.removeEventListener('resize', resizeCard);
         window.addEventListener('resize', resizeCard.bind(imageLocation));
     });
+    card.addEventListener('click', function () {
+        var editables = document.querySelectorAll('[contenteditable=""]');
+        editables.forEach(edit => {
+            var destroy;
+            edit.addEventListener('focus', function () {
+                destroy = initTextEdits(this);
+            });
+            edit.addEventListener('blur', function () {
+                destroy();
+            })
+        })
+    })
 });
 
 
@@ -84,10 +96,6 @@ function hideWelcomePanel() {
 
 
 
-
-
-var currentStep = "background";
-document.getElementById("backButton").addEventListener('click', function () { goToStep(currentStep) });
 
 
 
@@ -184,7 +192,7 @@ function goToStep(option) {
 
 function resizeCard(title) {
     var card = document.querySelector('#card');
-    if(!card){
+    if (!card) {
         return;
     } //if card doesn't exist yet
 
@@ -208,51 +216,35 @@ function resizeCard(title) {
 };
 
 
-function setCardTo(state){
+function setCardTo(state) {
     var card = document.querySelector('#card');
-    if(state == "open"){
+    if (state == "open") {
         card.classList.add('open');
+        if (!document.querySelector('#snowCanvas')) {//only add if snowcanvas exists
+            stopSnow = initSnow && initSnow(document.querySelector('#cardPreview'));
+        }
     }
-    if(state == "close"){
+    if (state == "close") {
         card.classList.remove('open');
     }
 }
 
-var input = document.querySelector('#imgupload');
-input.addEventListener('change', updateImageDisplay);
-
-function updateImageDisplay(){
-    var src = input.files;
-
-    var image = document.querySelector('#preview');
-    image.style.opacity = 1;
-    image.src = window.URL.createObjectURL(src[0]);
-    document.querySelector('#addComp').style.opacity = 0;
-    
-    document.querySelector('#logoPreview').src = window.URL.createObjectURL(src[0]);
-    document.querySelector('#logoPreview').style.display = "block";
-    this.value = null;
-}
-
-function removeLogo(el){
-    document.querySelector('#logoPreview').style.display = "none";
-};
 
 
 //AUTOFIT
 
-function isOverflowing(element){
+function isOverflowing(element) {
     return element.scrollHeight > element.clientHeight; //|| element.scrollWidth > element.clientWidth;
 }
 
 function autofit(element) {
     var limit = 100;
-    if(element.innerText == ""){
+    if (element.innerText == "") {
         //if there is no text, exit immediately
         return;
     }
     element.innerText == element.innerText; //cant remember, but i don't think I'd add it in for shits and giggles?
-    
+
     var size = parseInt(getComputedStyle(element).fontSize); //cache size
 
     //increase till it is overflowing
@@ -277,18 +269,85 @@ function initAutofit(element) {
         element = document.querySelector(element);
     }
 
-    element.addEventListener("paste", function (ev) { 
+    element.addEventListener("paste", function (ev) {
         ev.preventDefault();
     });
 
-    element.addEventListener("input", function () { 
+    element.addEventListener("input", function () {
         autofit(element);
     });
 
-    window.addEventListener('resize', function(){
+    window.addEventListener('resize', function () {
         autofit(element);
         autofit(element);
     })
 
     autofit(element);
 };
+
+
+function initTextEdits(el) {
+    console.log('build')
+    /*
+    var position = el.getBoundingClientRect();
+
+    retun;// function to destroy;*/
+    return function () { console.log('destroy') };
+}
+
+
+function sendForm() {
+    var formData = new FormData(document.querySelector('#createCardForm'));
+    var xhr = new XMLHttpRequest;
+    var emailInput = document.querySelector('#emailInput');
+    if (emailInput.value == "") {
+        alert('Please insert an email address.');
+        emailInput.style.backgroundColor = "lightyellow";
+        return;
+    }
+
+    xhr.responseType = 'json';
+    var cardContent = document.querySelector('#cardPreview').innerHTML.replace(/contenteditable/g, "").replace(/class="open"/g, "");
+    formData.append("cardContent", cardContent);
+
+    xhr.onload = function () {
+        currentURL = cardURL = window.location.href + xhr.response.url;
+        document.querySelector('#cardURL').textContent = cardURL;
+        document.querySelector('#cardURL').parentNode.href = cardURL;
+        updateShareLinks(cardURL);
+        toggleShare(true);
+    };
+
+    xhr.open('post', '/cardGenerator', true);
+    xhr.send(formData);
+}
+
+
+function sendEmails(){
+    var formData = new FormData(document.querySelector('#sendEmailForm'));
+    var xhr = new XMLHttpRequest;
+    var firstInput = document.querySelector('#sendEmailForm > input');
+
+    if(firstInput.value == ""){
+        alert('Please insert at least one email address.');
+        firstInput.style.backgroundColor = "lightyellow";
+        return;
+    }
+    
+    xhr.responseType = 'json';
+    
+    xhr.onload  = function() {
+        document.querySelector('#sendEmailButton').textContent = "Emails sent"
+    };
+
+    xhr.open('post', '/sendEmails', true);
+    xhr.send(formData);
+}
+
+function updateShareLinks(cardURL) {
+
+    document.querySelector('#facebook').parentNode.href = "https://www.facebook.com/sharer/sharer.php?u="+cardURL;
+    document.querySelector('#twitter').parentNode.href = "https://twitter.com/share?text=Just created an E-card&url="+cardURL+"&hashtags=XaraGroup";
+    document.querySelector('#linkedin').parentNode.href = "https://www.linkedin.com/shareArticle?mini=true&url"+cardURL+"&title=Xara E-card&summary=Just created my E-card";
+    document.querySelector('#pinterest').parentNode.href = "https://pinterest.com/pin/create/button/?url="+cardURL+"&description=Just created my Xara E-card";
+}
