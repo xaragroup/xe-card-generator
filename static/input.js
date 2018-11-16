@@ -49,9 +49,9 @@ cards.forEach(card => {
 
         setTimeout(function(){ //doubel check the autofit occurrs
             document.querySelectorAll('.autoFIT').forEach(element => {
-            autofit(element);
+                autofit(element);
             });
-        },500);
+        },200);
 
         document.querySelector('#toInfo').classList.remove('disabled');
         window.removeEventListener('resize', resizeCard);
