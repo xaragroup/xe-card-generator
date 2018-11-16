@@ -16,7 +16,9 @@ backgrounds.forEach(background => {
             document.querySelector('#background').remove();
         }
 
-        cardPreview.innerHTML = getBackgroundDomTemplate(imageLocation) + cardPreview.innerHTML;
+        var temp = document.createElement('div');
+        cardPreview.prepend(temp);
+        temp.outerHTML = getBackgroundDomTemplate(imageLocation);
         document.querySelector('#toCards').classList.remove('disabled');
     });
 })
@@ -33,7 +35,12 @@ cards.forEach(card => {
             document.querySelector('#card').remove();
         }
 
-        cardPreview.innerHTML = cardPreview.innerHTML + getCardDomTemplate(imageLocation);
+
+        
+        var temp = document.createElement('div');    
+        cardPreview.append(temp);
+        temp.outerHTML = getCardDomTemplate(imageLocation)    
+
         resizeCard(imageLocation);
         document.querySelectorAll('.autoFIT').forEach(element => {
             initAutofit(element);

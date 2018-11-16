@@ -43,6 +43,7 @@ function getCardDomTemplate(title) {
                 #card-inside-left {
                     transform-origin: top right;
                     transform: translateX(calc(-100% + 1px)) rotateY(180deg);
+                    border-right: 2px solid rgba(0,0,0,0.15);
                 }
                 
                 .open #card-inside-left {
@@ -113,6 +114,7 @@ function getCardDomTemplate(title) {
                 #card-inside-left {
                     transform-origin: top right;
                     transform: translateX(calc(-100% + 1px)) rotateY(180deg);
+                    border-right: 2px solid rgba(0,0,0,0.15);
                 }
                 
                 .open #card-inside-left {
@@ -193,6 +195,7 @@ function getCardDomTemplate(title) {
         #card-inside-left {
             transform-origin: top right;
             transform: translateX(calc(-100% + 1px)) rotateY(180deg);
+            border-right: 2px solid rgba(0,0,0,0.15);
         }
         
         .open #card-inside-left {
@@ -285,6 +288,7 @@ function getCardDomTemplate(title) {
                 #card-inside-left {
                     transform-origin: top right;
                     transform: translateX(-100%) rotateY(180deg);
+                    border-right: 2px solid rgba(0,0,0,0.15);
                 }
                 
                 .open #card-inside-left {
