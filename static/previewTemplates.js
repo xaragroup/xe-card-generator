@@ -354,6 +354,23 @@ function getCardDomTemplate(title) {
 
 function getBackgroundDomTemplate(title) {
     switch (title) {
+        case "xara_blue.png":
+            return `
+            <style>
+
+            #background {
+                animation: slide 1200s infinite;
+                animation-timing-function: linear;
+            }
+            @keyframes slide {
+                0% {background-position: 0%;}
+                50% {background-position: 100%;}
+                100% {background-position: 0%;}
+            }
+            </style>
+            <div id="background"  style="background-image:url(${title}); width: 100%;height: 100%;background-size: cover;background-position: 50%;"; overflow: hidden;></div>
+            `;
+            break;
         case "silver_bauble.jpg":
         case "silver_bauble.jpg":
             return `<div id="background"  style="background-image:url(${title}); width: 100%;height: 100%;background-size: cover;background-position: 50%;"; overflow: hidden;></div>`;
