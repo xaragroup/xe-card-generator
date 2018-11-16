@@ -363,7 +363,7 @@ function getBackgroundDomTemplate(title) {
             <style>
 
             #background {
-                animation: slide 180s infinite;
+                animation: slide 60s infinite;
                 animation-timing-function: linear;
             }
             @keyframes slide {

@@ -86,6 +86,7 @@ function moveToCenter() {
     var diff = size.left - wantedLeft; //diff between its current pos and wantedPos
 
     var setValue = current - diff;
+    /*
     if (setValue > 0) {
         setValue = 0;
     }
@@ -93,7 +94,7 @@ function moveToCenter() {
     if (setValue < -max) {
         setValue = -max;
     }
-
+*/
 
     this.cont.style.left = `${setValue}px`;
 };
