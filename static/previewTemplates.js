@@ -173,6 +173,97 @@ function getCardDomTemplate(title) {
                 </div>
         </div>
     `
+    case "b_real_estate_thumb.png":
+    return `
+<div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
+<style>
+        .sizing {
+            backface-visibility: hidden;
+            transform-origin: top left;
+            transition: transform 1s;
+        }
+        .open .sizing{
+            transform: translateX(calc(50% - 1px));
+        }
+
+        .open #card-cover {
+            transform: translateX(calc(50% - 1px)) rotateY(180deg);
+        }
+
+        #card-inside-left {
+            transform-origin: top right;
+            transform: translateX(calc(-100% + 1px)) rotateY(180deg);
+        }
+        
+        .open #card-inside-left {
+            transform-origin: top right;
+            transform: translateX(calc(-50% + 1px)) rotateY(360deg);
+        }
+
+        img {
+            display: none;
+        }
+        
+        
+        img[src] {
+           display: block;
+         }
+        
+         [contenteditable]:focus {
+            outline: dashed 0.5px rgba(102,102,102,0.5);
+            stroke-dasharray: 3.5;
+            -webkit-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
+            -moz-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
+            box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
+        }    
+        
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+</style>
+
+    <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+        <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+
+        <p class="autoFIT" id="message" contenteditable="" spellcheck="false" 
+        style=" position:absolute; 
+                top:10%; 
+                bottom:40%; 
+                left:10%; 
+                right:10%; 
+                display: block; 
+                color:white;
+                text-align: center; 
+                font-family: 'Pacifico'; 
+                margin: 0px;">Have a Merry Christmas and a happy New Year!</p> 
+        
+        <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" 
+        style=" position:absolute; 
+                top: 65%; 
+                bottom: 15%; 
+                right:10%; 
+                left:10%; 
+                display: block; 
+                color: #bf0005;
+                text-align: center; 
+                font-family: 'Roboto; 
+                margin: 0px;">See you in the new year... <br>Xara Real Estate</p>
+
+            </div>
+
+
+    <div class="sizing" id="card-inside-left" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+        <img onmousedown="setCardTo('close')" src="${title.replace("_thumb", "_inside_left")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+    </div>
+
+    <div class="sizing" id="card-cover" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto">
+        <img onmousedown="setCardTo('open')" src="${title.replace("_thumb", "_cover")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+        <p id="coverMessage" class="autoFIT" contentEditable="" spellcheck="false" style="position:absolute; top: 5%; bottom: 80%; right:5%; left:5%; display: block; color:white; font-family: 'Pacifico'; margin: 0px; text-align: center;">Welcoming you to your new</p>
+
+        <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" style="position:absolute; top: 18%; bottom: 70%; right:5%; left:5%; display: block; color:#bf0005; text-align: center; font-family: 'Times New Roman'; margin: 0px;">CHRISTMAS HOME</p>
+        <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" style="position: absolute; bottom: 45%; left: 0%; right: 0%; margin: auto; height: 25%;">
+        </div>
+</div>
+`
 
         default:
             return `
