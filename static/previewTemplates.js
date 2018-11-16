@@ -48,7 +48,7 @@ function getCardDomTemplate(title) {
                 
                 .open #card-inside-left {
                     transform-origin: top right;
-                    transform: translateX(calc(-50% + 1px)) rotateY(360deg);
+                    transform: translateX(calc(-50% + 2px)) rotateY(360deg);
                 }
 
                 img {
@@ -119,7 +119,7 @@ function getCardDomTemplate(title) {
                 
                 .open #card-inside-left {
                     transform-origin: top right;
-                    transform: translateX(calc(-50% + 1px)) rotateY(360deg);
+                    transform: translateX(calc(-50% + 2px)) rotateY(360deg);
                 }
 
                 img {
@@ -200,7 +200,7 @@ function getCardDomTemplate(title) {
         
         .open #card-inside-left {
             transform-origin: top right;
-            transform: translateX(calc(-50% + 1px)) rotateY(360deg);
+            transform: translateX(calc(-50% + 2px)) rotateY(360deg);
         }
 
         img {
@@ -293,7 +293,7 @@ function getCardDomTemplate(title) {
                 
                 .open #card-inside-left {
                     transform-origin: top right;
-                    transform: translateX(-50%) rotateY(360deg);
+                    transform: translateX(calc(-50% + 2px)) rotateY(360deg);
                 }
 
                 img {
@@ -363,7 +363,7 @@ function getBackgroundDomTemplate(title) {
             <style>
 
             #background {
-                animation: slide 1200s infinite;
+                animation: slide 180s infinite;
                 animation-timing-function: linear;
             }
             @keyframes slide {

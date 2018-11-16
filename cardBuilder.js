@@ -145,9 +145,13 @@ footer a {
     };
     window.addEventListener('resize', resizeCard);
     resizeCard();
-    document.querySelectorAll('.autoFIT').forEach(el => {
-        initAutofit(el);
-    })
+    
+    setTimeout(function(){
+        document.querySelectorAll('.autoFIT').forEach(el => {
+            initAutofit(el);
+        })
+    },150)
+    
     setCardTo('close')
     </script>
     `

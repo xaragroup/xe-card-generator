@@ -42,9 +42,17 @@ cards.forEach(card => {
         temp.outerHTML = getCardDomTemplate(imageLocation)    
 
         resizeCard(imageLocation);
+        
         document.querySelectorAll('.autoFIT').forEach(element => {
             initAutofit(element);
         });
+
+        setTimeout(function(){ //doubel check the autofit occurrs
+            document.querySelectorAll('.autoFIT').forEach(element => {
+            autofit(element);
+            });
+        },500);
+
         document.querySelector('#toInfo').classList.remove('disabled');
         window.removeEventListener('resize', resizeCard);
         window.addEventListener('resize', resizeCard.bind(imageLocation));
