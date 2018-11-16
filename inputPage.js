@@ -70,6 +70,20 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     
+    <meta property="og:url"                content="https://cards.xara.com/" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="Xara E-card Creator" />
+    <meta property="og:description"        content="Create your very own e-card in seconds with xara.com" />
+    <meta property="og:image:width"        content="1048"/> 
+    <meta property="og:image:height"       content="549"/>
+    <meta property="og:image"              content="https://cards.xara.com/envelope.png" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xara E-card Creator">
+    <meta name="twitter:description" content="Create your very own e-card in seconds with xara.com" >
+    <meta name="twitter:image" content="https://cards.xara.com/envelope.png">
+
+
 </head>
 
 <body>
