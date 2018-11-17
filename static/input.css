@@ -80,6 +80,18 @@ body {
     opacity:0;
 }
 
+#editInstructions{
+    left: 0px !important;
+    right: 0px; 
+    margin-left: auto;
+    margin-right:auto;
+}
+
+#editInstructions.inactive {
+    opacity:0;
+}
+
+
 #cardPreview {
     position:absolute;
     left:0px;

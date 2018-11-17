@@ -114,6 +114,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <h1 class="" id="backgroundInstructions">Firstly choose your E-card’s background:
         </h1>
         <h1 class="hidden" id="cardInstructions">Pick a card design</h1>
+        <h1 class="hidden" id="editInstructions">Now, click into the preview below, to open, close and edit the card!</h1>
         <h1 class="" id="backButton">Back
     </div>
 
@@ -154,7 +155,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
             </label>
         </div>
 
-        <div class="button hidden" id="toSubmit" onclick="sendForm()">Get your e-card</div>
+        <div class="button hidden" id="toSubmit" onclick="sendForm()">Once you're done, click here to get your E-card</div>
 
         <!-- card -->
         <div class="overflowHandler">

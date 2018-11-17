@@ -197,6 +197,7 @@ function goToStep(option) {
             document.querySelector('#toInfo').classList = 'hidden';
 
             //show info
+            document.querySelector('#editInstructions').classList = '';
             document.querySelector('#toSubmit').classList = "button";
             document.querySelector('#form').classList = "";
             //open card
