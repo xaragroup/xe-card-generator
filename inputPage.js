@@ -230,7 +230,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     </a>
 
     <footer>
-    <p><a href="https://cards.xara.com" target="_blank">Create your own e-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com" target="_blank">This template and more can be customised further...</a></p>
+    <p><a href="https://cards.xara.com" target="_blank">Create your own E-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com" target="_blank">This template and more can be customised further...</a></p>
        <p id="made">… made by the team at <a href="https://www.xara.com" target="_blank"><b>xara.com</b></a></p>
         </footer>
     <!--SCRIPTS -->
