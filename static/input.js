@@ -1,8 +1,10 @@
 var backgrounds = document.querySelectorAll('.bg-images');
 var cards = document.querySelectorAll('.card-images');
 var cardPreview = document.querySelector('#cardPreview');
+var backgroundFilters = document.querySelectorAll('.colorPickers');
 
 var currentBackground, currentCard, currentEffect = document.querySelector('#effect');
+
 
 
 backgrounds.forEach(background => {
@@ -70,6 +72,17 @@ cards.forEach(card => {
         })
     })
 });
+
+
+backgroundFilters.forEach(filter => {
+
+    filter.addEventListener('click', function () {
+        var background = document.querySelector('#background');
+        background.style.backgroundBlendMode = "multiply";
+        background.style.backgroundColor = filter.style.backgroundColor;
+    });
+})
+
 
 
 

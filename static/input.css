@@ -187,6 +187,27 @@ box-shadow: 7px 10px 30px -9px rgba(0,0,0,0.75);
 
 }
 
+.colorPickers {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    transition: all 0.5s;
+    opacity: 0;
+    border-radius: 6px;
+    -webkit-box-shadow: 3px 3px 30px -3px rgba(0,0,0,0.55);
+    -moz-box-shadow: 3px 3px 30px -3px rgba(0,0,0,0.55);
+    box-shadow: 3px 3px 30px -3px rgba(0,0,0,0.55);
+    display: table-cell;
+    pointer-events: none;
+}
+#background-picker > input:checked +label > .colorPickers {
+    opacity:1;
+    pointer-events: all;
+
+}
+
+
 .bg-text {
     font-weight: 500;
     width: 100%;
@@ -366,6 +387,15 @@ box-shadow: 7px 10px 30px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
     box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
 }    
+
+
+
+#card-left {}
+#card-right {}
+#bg-left {}
+#bg-right {}
+
+.scrollerHandle {}
 /*
 #insideCard {
     position:absolute;

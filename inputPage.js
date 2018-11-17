@@ -7,7 +7,15 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 
     }
 
-
+    var colors = `
+                        <div class="colorPickers" style="background-color:black;    left:6px;"></div>
+                        <div class="colorPickers" style="background-color:#e0322c;  left:12px;"></div>
+                        <div class="colorPickers" style="background-color:#e09720;  left:18px;"></div>
+                        <div class="colorPickers" style="background-color:#eeef00;  left:24px;"></div>
+                        <div class="colorPickers" style="background-color:#7ed732;  left:30px;"></div>
+                        <div class="colorPickers" style="background-color:#1471c1;  left:36px;"></div>
+                        <div class="colorPickers" style="background-color:#8007e4;  left:42px;"></div>
+                    `
     function backgroundsLoop() {
         var html = "";
         var cleanString;
@@ -17,11 +25,11 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
             //Capitalise the first letter
             cappedString = cleanString.substr(0, 1).toUpperCase() + cleanString.substr(1);
             html += `   <input type="radio" name="background" value="${backgroundFiles[i]}" id="${backgroundFiles[i]}">
-                        <label for="${backgroundFiles[i]}" class="bg">    
+                        <label for="${backgroundFiles[i]}" class="bg">  
                         <div class="bg-images" style="background-image:url(${backgroundFiles[i]})"></div>    
                         <p class="bg-text">${cappedString}</p> 
+                        ${backgroundFiles[i].indexOf("_colored") > -1 ? colors : ""}  
                         </label>`;
-
 
             if (checked == true);
         }
@@ -146,6 +154,8 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <div class="overflowHandler">
         <div class="hidden" id="card-picker">   
             ${cardsLoop()}
+            <div class="scrollerHandle" id="card-left"></div>
+            <div class="scrollerHandle" id="card-right"></div>
         </div>
         </div>
 
@@ -154,6 +164,8 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <div class="overflowHandler">
         <div class="" id="background-picker">
             ${backgroundsLoop()}
+            <div class="scrollerHandle" id="bg-left"></div>
+            <div class="scrollerHandle" id="bg-right"></div>
         </div>
         </div>
 

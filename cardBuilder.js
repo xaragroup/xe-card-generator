@@ -80,10 +80,6 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, exportURL){
        display: block;
      }
 
-    #coverMessage {
-        pointer-events:none !important;
-    }
-
 footer {
     position:absolute;
     left:0px;
@@ -112,6 +108,9 @@ footer a {
 
 #made a {
     color : #2fa5e7;
+}
+logoPreview {
+    pointer-events:none;
 }
     `;
 
