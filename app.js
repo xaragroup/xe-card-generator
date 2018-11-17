@@ -15,18 +15,16 @@ app.get('/', (req, res) => {
     let cards = resources + "/cards/";
 
     var bgFiles = fs.readdirSync(backgrounds);
-    //console.log(bgFiles)
+    var cardFiles = fs.readdirSync(cards);
+
     
+/*    
     bgFiles.forEach(file => {
         fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(backgrounds + file));
     })
-
-    var cardFiles = fs.readdirSync(cards);
-    
-    //console.log(cardFiles)
     cardFiles.forEach(file => {
         fs.writeFileSync(__dirname + "/static/" + file, fs.readFileSync(cards + file));
-    })
+    })*/
     let { generateInputPage } = require("./inputPage.js");
     var src = generateInputPage(bgFiles, cardFiles);
 
