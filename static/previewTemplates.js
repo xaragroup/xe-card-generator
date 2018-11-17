@@ -1,70 +1,54 @@
 function getCardDomTemplate(title) {
-    switch (title) {
-        case "special": //merry_christmas_cover.png
-            return `
-            <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
-                <style>
-                @media (max-aspect-ratio: 1/1) { /*thinner than square*
-                    #card {
-                        background-color:black;
-                    }
-                }
-                </style>
+    var defaultStyling = `
+    <style>
+    .sizing {
+        backface-visibility: hidden;
+        transform-origin: top left;
+        transition: transform 1s;
+    }
+    .open .sizing{
+        transform: translateX(calc(50% - 1px));
+    }
 
-                <img id="actualCardPreview-inside-right" src="merry_christmas_inside_right.png" class="open">
-                <div id="insideCard" style="width: 392.25px; opacity: 1;" class="open">
-                    <h4 contenteditable="" spellcheck="false" class="merry_christmas" style="font-size: 58px; display: block;">Click here to edit your message</h4>
-                    <h5 contenteditable="" spellcheck="false" class="merry_christmas" style="font-size: 38px; display: block;">and don't forget to sign it!</h5>
-                    <img id="logoPreview" src="./removeLogo.png">
-                </div>
-        
-        
-                <img id="actualCardPreview-inside-left" src="merry_christmas_inside_left.png" class="open">
-                <img id="actualCardPreview-cover" src="merry_christmas_cover.png" class="open">
-            </div>
-        `
+    .open #card-cover {
+        transform: translateX(calc(50% - 1px)) rotateY(180deg);
+    }
+
+    #card-inside-left {
+        transform-origin: top right;
+        transform: translateX(calc(-100% + 1px)) rotateY(180deg);
+        border-right: 2px solid rgba(0,0,0,0.15);
+    }
+    
+    .open #card-inside-left {
+        transform-origin: top right;
+        transform: translateX(calc(-50% + 2px)) rotateY(360deg);
+    }
+
+    img {
+        display: none;
+    }
+    
+    
+    img[src] {
+       display: block;
+     }
+</style>
+    `
+
+
+
+
+
+    switch (title) {        
         case "a_real_estate_thumb.png":
             return `
         <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
+        ${defaultStyling}
         <style>
-                .sizing {
-                    backface-visibility: hidden;
-                    transform-origin: top left;
-                    transition: transform 1s;
-                }
-                .open .sizing{
-                    transform: translateX(calc(50% - 1px));
-                }
-
-                .open #card-cover {
-                    transform: translateX(calc(50% - 1px)) rotateY(180deg);
-                }
-
-                #card-inside-left {
-                    transform-origin: top right;
-                    transform: translateX(calc(-100% + 1px)) rotateY(180deg);
-                    border-right: 2px solid rgba(0,0,0,0.15);
-                }
-                
-                .open #card-inside-left {
-                    transform-origin: top right;
-                    transform: translateX(calc(-50% + 2px)) rotateY(360deg);
-                }
-
-                img {
-                    display: none;
-                }
-                
-                
-                img[src] {
-                   display: block;
-                 }
-                
-                 
-                
-                <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
         </style>
+        
 
             <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
                 <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
@@ -91,40 +75,8 @@ function getCardDomTemplate(title) {
     case "penguin_thumb.png":
             return `
         <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
-        <style>
-                .sizing {
-                    backface-visibility: hidden;
-                    transform-origin: top left;
-                    transition: transform 1s;
-                }
-                .open .sizing{
-                    transform: translateX(calc(50% - 1px));
-                }
-
-                .open #card-cover {
-                    transform: translateX(calc(50% - 1px)) rotateY(180deg);
-                }
-
-                #card-inside-left {
-                    transform-origin: top right;
-                    transform: translateX(calc(-100% + 1px)) rotateY(180deg);
-                    border-right: 2px solid rgba(0,0,0,0.15);
-                }
-                
-                .open #card-inside-left {
-                    transform-origin: top right;
-                    transform: translateX(calc(-50% + 2px)) rotateY(360deg);
-                }
-
-                img {
-                    display: none;
-                }
-                
-                
-                img[src] {
-                   display: block;
-                 }
-                
+        ${defaultStyling}
+        <style>                
                 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
         </style>
@@ -164,40 +116,8 @@ function getCardDomTemplate(title) {
     case "b_real_estate_thumb.png":
     return `
 <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
+${defaultStyling}
 <style>
-        .sizing {
-            backface-visibility: hidden;
-            transform-origin: top left;
-            transition: transform 1s;
-        }
-        .open .sizing{
-            transform: translateX(calc(50% - 1px));
-        }
-
-        .open #card-cover {
-            transform: translateX(calc(50% - 1px)) rotateY(180deg);
-        }
-
-        #card-inside-left {
-            transform-origin: top right;
-            transform: translateX(calc(-100% + 1px)) rotateY(180deg);
-            border-right: 2px solid rgba(0,0,0,0.15);
-        }
-        
-        .open #card-inside-left {
-            transform-origin: top right;
-            transform: translateX(calc(-50% + 2px)) rotateY(360deg);
-        }
-
-        img {
-            display: none;
-        }
-        
-        
-        img[src] {
-           display: block;
-         }
-        
         <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
 </style>
@@ -245,47 +165,79 @@ function getCardDomTemplate(title) {
         </div>
 </div>
 `
+case "3_cornucopia_thumb.png":
+    return `
+<div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
+${defaultStyling}
 
+<style>
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
+</style>
+
+    <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+        <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+
+        <p class="autoFIT" id="message" contenteditable="" spellcheck="false" 
+        style=" position:absolute; 
+                top:10%; 
+                bottom:30%; 
+                left:10%; 
+                right:10%; 
+                display: block; 
+                color:#fbf194;
+                text-align: center; 
+                font-family: 'Merriweather', serif; 
+                margin: 0px;">Come around ours for Thanksgiving dinner. We're having: <br> - TURKEY -<br><br> - Roast Potatos -<br><br> - Pumpkin Pie -<br><br> - Assorted Veg. -</p> 
+        
+        <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" 
+        style="position: absolute; 
+        bottom: 5%; 
+        left: 0%; 
+        right: 0%; 
+        margin: auto; 
+        height: 25%;">
+        </div>
+
+
+    <div class="sizing" id="card-inside-left" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+        <img onmousedown="setCardTo('close')" src="${title.replace("_thumb", "_inside_left")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+    </div>
+
+    <div class="sizing" id="card-cover" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto">
+        <img onmousedown="setCardTo('open')" src="${title.replace("_thumb", "_cover")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+        <p id="coverMessage" class="autoFIT" contentEditable="" spellcheck="false" 
+        style="position:absolute; 
+        top: 8%; 
+        bottom: 85%; 
+        right:5%; 
+        left:5%; 
+        display: block; 
+        color:white; 
+        font-family: 'Cantata One', serif;
+        margin: 0px; 
+        text-align: center;">YOU'RE INVITED TO</p>
+
+        <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" 
+        style="position:absolute; 
+        top: 15%; 
+        bottom: 65%; 
+        right:5%; 
+        left:5%; 
+        display: block; 
+        color:#fbf194; 
+        text-align: center; 
+        font-family: 'Playfair Display', serif;
+        margin: 0px;">THANKSGIVING</p>
+        
+        </div>
+`
         default:
             return `
         <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
-        <style>
-                .sizing {
-                    backface-visibility: hidden;
-                    transform-origin: top left;
-                    transition: transform 1s;
-                }
-                .open .sizing{
-                    transform: translateX(50%);
-                }
-
-                .open #card-cover {
-                    transform: translateX(50%) rotateY(180deg);
-                }
-
-                #card-inside-left {
-                    transform-origin: top right;
-                    transform: translateX(-100%) rotateY(180deg);
-                    border-right: 2px solid rgba(0,0,0,0.15);
-                }
-                
-                .open #card-inside-left {
-                    transform-origin: top right;
-                    transform: translateX(calc(-50% + 2px)) rotateY(360deg);
-                }
-
-                img {
-                    display: none;
-                }
-                
-                
-                img[src] {
-                   display: block;
-                 }
-
-
-        </style>
-
+        ${sdefaultStyling}
             <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
                 <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
 
@@ -306,18 +258,6 @@ function getCardDomTemplate(title) {
             </div>
         </div>
     `
-        /*
-        <img id="actualCardPreview-inside-right" src="merry_christmas_inside_right.png" class="open">
-                <div id="insideCard" style="width: 392.25px; opacity: 1;" class="open">
-                    <h4 contenteditable="" spellcheck="false" class="merry_christmas" style="font-size: 58px; display: block;">Click here to edit your message</h4>
-                    <h5 contenteditable="" spellcheck="false" class="merry_christmas" style="font-size: 38px; display: block;">and don't forget to sign it!</h5>
-                    <img id="logoPreview" src="./removeLogo.png">
-                </div>
-        
-        
-                <img id="actualCardPreview-inside-left" src="merry_christmas_inside_left.png" class="open">
-                <img id="actualCardPreview-cover" src="merry_christmas_cover.png" class="open">
-        */
     }
 
 

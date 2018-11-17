@@ -35,13 +35,14 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, exportURL){
     
     `;
 
-    this.fontList = `
+    this.fontList = ``/*     FONTS ARE PULLED IN WITH THE DESIGN SO THIS IS UNNECESSARY
     <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    `
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">*/
 
 
     this.style = `
