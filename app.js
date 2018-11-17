@@ -53,6 +53,7 @@ app.post('/cardGenerator', (req, res) => {
 
         var card = {
             cardContents : fields.cardContent,
+            isSnowing : !!fields.snow,
             imageLocation : "" && files.filetoupload && files.filetoupload.path,
             imageName : "" && files.filetoupload && files.filetoupload.name,
             uniqueLocation : makeid(),
@@ -89,7 +90,7 @@ app.post('/cardGenerator', (req, res) => {
         }
         
         
-        card.src = card2Gen(card.cardContents, card.imageName, card.exportURL);
+        card.src = card2Gen(card.cardContents, card.imageName, card.isSnowing, card.exportURL);
 
         fs.mkdirSync( __dirname +"/exports/"+ card.uniqueLocation)
         fs.writeFile( __dirname +"/exports/"+ card.uniqueLocation+ "/index.html", card.src, function (err) {

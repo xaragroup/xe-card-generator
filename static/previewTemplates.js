@@ -45,9 +45,6 @@ function getCardDomTemplate(title) {
             return `
         <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
         ${defaultStyling}
-        <style>
-        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-        </style>
         
 
             <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
@@ -76,10 +73,6 @@ function getCardDomTemplate(title) {
             return `
         <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
         ${defaultStyling}
-        <style>                
-                <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-
-        </style>
 
             <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
                 <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
@@ -117,10 +110,6 @@ function getCardDomTemplate(title) {
     return `
 <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
 ${defaultStyling}
-<style>
-        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-
-</style>
 
     <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
         <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
@@ -170,13 +159,6 @@ case "3_cornucopia_thumb.png":
 <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
 ${defaultStyling}
 
-<style>
-<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-
-</style>
-
     <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
         <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
 
@@ -190,11 +172,11 @@ ${defaultStyling}
                 color:#fbf194;
                 text-align: center; 
                 font-family: 'Merriweather', serif; 
-                margin: 0px;">Come around ours for Thanksgiving dinner. We're having: <br> - TURKEY -<br><br> - Roast Potatos -<br><br> - Pumpkin Pie -<br><br> - Assorted Veg. -</p> 
+                margin: 0px;">Come to ours for <br>THANKSGIVING DINNER!<br><br><u>MENU</u> <br> - TURKEY -<br> - Roast Potatoes -<br> - Pumpkin Pie -<br> - Assorted Veg. -</p> 
         
         <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" 
         style="position: absolute; 
-        bottom: 5%; 
+        bottom: 7%; 
         left: 0%; 
         right: 0%; 
         margin: auto; 

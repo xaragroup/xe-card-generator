@@ -60,7 +60,14 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 
         return html;
     }
-
+    var fonts = `
+    <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">`
 
     // now return the html with the dynamic content
 
@@ -72,12 +79,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     <title>Xara Cloud's Input page</title>
     <link rel="stylesheet" type="text/css" href="./input.css">
     <link rel="stylesheet" type="text/css" href="./text_styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    
+    ${fonts}
     <meta property="og:url"                content="https://cards.xara.com/" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="Xara E-card Creator" />
@@ -142,10 +144,14 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
             <input id="compInput" type="text" name="company" value="www.example.com">
 -->
             <label id="contactLabel">
-                <input id="contactCheck" type="checkbox" name="contact" checked> Yes I would like to hear about more stuff from
+                <input id="contactCheck" type="checkbox" name="contact" unchecked> Yes I would like to hear about more stuff from
                 <a href="https://www.xara.com">Xara Cloud</a>
+                <div id="privacy">We will treat your data with care and you can unsubscribe for free anytime. See our <a href="http://xara.cloud/privacy/" title="Privacy Policy" target="_blank">Privacy Policy</a> for more information.</div>
             </label>
 
+            <label id="snowEnable">
+                <input id="contactCheck" type="checkbox" name="snow" onclick="toggleSnow();" checked> Apply Snow effect
+            </label>
         </div>
 
         <div class="button hidden" id="toSubmit" onclick="sendForm()">Get your e-card</div>

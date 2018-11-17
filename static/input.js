@@ -179,7 +179,7 @@ function goToStep(option) {
             //toggleCard(false);
 
             //backbutton 
-            document.querySelector('#backButton').style.opacity = 0.49;
+            document.querySelector('#backButton').style.opacity = 0.9;
             document.querySelector('#backButton').style.pointerEvents = "auto";
             currentStep = "background";
 
@@ -206,12 +206,12 @@ function goToStep(option) {
 
 
             //backbutton 
-            document.querySelector('#backButton').style.opacity = 0.49;
+            document.querySelector('#backButton').style.opacity = 0.9;
             document.querySelector('#backButton').style.pointerEvents = "auto";
             currentStep = "card";
             //turn on snow
-            if (!document.querySelector('#snowCanvas')) {//only add if snowcanvas exists
-                stopSnow = initSnow && initSnow(document.querySelector('#cardPreview'));
+            if (!document.querySelector('#snowCanvas') && initSnow) {//only add if snowcanvas exists
+                stopSnow = initSnow(document.querySelector('#cardPreview'));
             }
             break;
     }
@@ -385,4 +385,16 @@ function updateShareLinks(cardURL) {
     document.querySelector('#twitter').parentNode.setAttribute("OnClick", `window.open("${twitterURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300');`);
     document.querySelector('#linkedin').parentNode.setAttribute("OnClick", `window.open("${linkedinURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=530');`);
     document.querySelector('#pinterest').parentNode.setAttribute("OnClick", `window.open("${pinterestURL}",'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=940');`);
+}
+
+function toggleSnow(){
+    if(stopSnow){
+        stopSnow();
+        stopSnow = false;
+        if (document.querySelector('#snowCanvas')) {//only add if snowcanvas exists
+            document.querySelector('#snowCanvas').remove();
+        }
+        return;
+    }
+    stopSnow = initSnow(document.querySelector('#cardPreview'));
 }
