@@ -60,13 +60,7 @@ function getCardDomTemplate(title) {
                    display: block;
                  }
                 
-                 [contenteditable]:focus {
-                    outline: dashed 0.5px rgba(102,102,102,0.5);
-                    stroke-dasharray: 3.5;
-                    -webkit-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                    -moz-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                    box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                }    
+                 
                 
                 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
@@ -130,14 +124,6 @@ function getCardDomTemplate(title) {
                 img[src] {
                    display: block;
                  }
-                
-                 [contenteditable]:focus {
-                    outline: dashed 0.5px rgba(102,102,102,0.5);
-                    stroke-dasharray: 3.5;
-                    -webkit-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                    -moz-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                    box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                }    
                 
                 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
@@ -211,14 +197,6 @@ function getCardDomTemplate(title) {
         img[src] {
            display: block;
          }
-        
-         [contenteditable]:focus {
-            outline: dashed 0.5px rgba(102,102,102,0.5);
-            stroke-dasharray: 3.5;
-            -webkit-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-            -moz-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-            box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-        }    
         
         <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
@@ -304,15 +282,6 @@ function getCardDomTemplate(title) {
                 img[src] {
                    display: block;
                  }
-                
-                 [contenteditable]:focus {
-                    outline: dashed 0.5px rgba(102,102,102,0.5);
-                    stroke-dasharray: 3.5;
-                    -webkit-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                    -moz-box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                    box-shadow: 0px 0px 10px 5px rgba(168, 209, 244, 1);
-                }
-                
 
 
         </style>
