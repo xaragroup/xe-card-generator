@@ -18,6 +18,11 @@ function getCardDomTemplate(title) {
         transform-origin: top right;
         transform: translateX(calc(-100% + 1px)) rotateY(180deg);
         border-right: 2px solid rgba(0,0,0,0.15);
+        cursor: pointer;
+    }
+
+    #card-cover {
+        cursor: pointer;
     }
     
     .open #card-inside-left {
