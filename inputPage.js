@@ -83,7 +83,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 <head>
     <meta charset="UTF-8">
     <title>Xara Cloud's Input page</title>
-    <meta name="viewport" content="width=850">
+    <meta name="viewport" content="width=1030">
 
     <link rel="stylesheet" type="text/css" href="./input.css">
     <link rel="stylesheet" type="text/css" href="./text_styles.css">
