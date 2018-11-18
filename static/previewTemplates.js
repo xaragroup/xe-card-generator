@@ -47,6 +47,75 @@ function getCardDomTemplate(title) {
 
     switch (title) {  
         
+        case "line_tree_thumb.png":
+        return `
+    <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
+    ${defaultStyling}
+    
+        <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+            <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+    
+            <p class="autoFIT" id="message" contenteditable="" spellcheck="false" 
+            style=" position:absolute; 
+                    top:5%; 
+                    bottom:25%; 
+                    left:10%; 
+                    right:10%; 
+                    display: block; 
+                    color:white;
+                    text-align: center; 
+                    font-family: 'Arapey', serif;
+                    margin: 0px;">Brilliant work by everyone this year, and look forward to a better next year!</p> 
+    
+            <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" 
+            style="position: absolute; 
+            bottom: 5%; 
+            left: 0%; 
+            right: 0%; 
+            margin: auto; 
+            height: 20%;">
+    
+                </div>
+    
+    
+    
+        <div class="sizing" id="card-inside-left" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+            <img onmousedown="setCardTo('close')" src="${title.replace("_thumb", "_inside_left")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+        </div>
+    
+        <div class="sizing" id="card-cover" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto">
+            <img onmousedown="setCardTo('open')" src="${title.replace("_thumb", "_cover")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+            
+            <p id="coverMessage" class="autoFIT" contentEditable="" spellcheck="false" 
+            style="position:absolute; 
+            top: 72%;
+            bottom: 15%;
+            right: 5%;
+            left: 5%;
+            display: block; 
+            color:white; 
+            font-family: 'Open Sans', sans-serif;
+            margin: 0px; 
+            text-align: center;">HAPPY HOLIDAYS</p>
+    
+            <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" 
+            style="position:absolute; 
+            top: 85%;
+            bottom: 5%;
+            right:5%; 
+            left:5%; 
+            display: block;
+            color: white;
+            text-align: center; 
+            font-family: 'Open Sans', sans-serif;
+            margin: 0px;">Wishing you a happy festive holiday</p>
+    
+            
+            </div>
+    </div>
+    `
+
+
         case "christmas_trees_thumb.png":
         return `
     <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
