@@ -83,6 +83,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 <head>
     <meta charset="UTF-8">
     <title>Xara Cloud Free E-card Creator, Perfect for B2B and Personal E-cards</title>
+    <meta name="description=" content="Create your very own e-card in seconds with xara.com. Create beautiful B2B and Personal e-card designs, using our library of professionally designed e-cards.">
     <meta name="viewport" content="width=1200">
 
     <link rel="stylesheet" type="text/css" href="./input.css">
@@ -100,7 +101,16 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     <meta name="twitter:title" content="Xara E-card Creator">
     <meta name="twitter:description" content="Create your very own e-card in seconds with xara.com" >
     <meta name="twitter:image" content="https://cards.xara.com/envelope.png">
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129399212-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-129399212-1');
+    </script>
+    
 
 </head>
 
@@ -192,16 +202,16 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
         <div id="closeShare" onclick="toggleShare(false)">x</div>
         <h2>Share your e-card</h2>
         <p id="publishedTo">Your e-card is published to here:</p>
-        <a href="" target="_blank"><p id="cardURL">UNDEFINED</p></a>
+        <a href="" target="_blank" rel="nofollow"><p id="cardURL">UNDEFINED</p></a>
         <hr>
         <p id="shareTo">
            Share to: 
         </p>
         
-        <a><div id="facebook" class="social" title="Share to Facebook!"></div> </a>
-        <a><div id="twitter" class="social" title="Share to Twitter!"></div> </a>
-        <a><div id="linkedin" class="social" title="Share to LinkedIn!"></div> </a>
-        <a><div id="pinterest" class="social" title="Share to Pinterest!"></div> </a>
+        <a rel="nofollow" ><div id="facebook" class="social" title="Share to Facebook!"></div> </a>
+        <a rel="nofollow" ><div id="twitter" class="social" title="Share to Twitter!"></div> </a>
+        <a rel="nofollow" ><div id="linkedin" class="social" title="Share to LinkedIn!"></div> </a>
+        <a rel="nofollow" ><div id="pinterest" class="social" title="Share to Pinterest!"></div> </a>
 
         <hr>
         <p id="emailTo">Email:</p>
