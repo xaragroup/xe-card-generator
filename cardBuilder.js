@@ -45,6 +45,8 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, snowEffect, 
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Magra" rel="stylesheet">
     `;
 
     this.style = `

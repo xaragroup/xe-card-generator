@@ -69,7 +69,10 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">`
+    <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Magra" rel="stylesheet">
+    `
 
     // now return the html with the dynamic content
 
