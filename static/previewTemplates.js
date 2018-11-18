@@ -75,6 +75,7 @@ function getCardDomTemplate(title) {
     `
 
     case "christmas_baubles_thumb.png":
+    case "christmas_baubles2_thumb.png":
     return `
 <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
 ${defaultStyling}
