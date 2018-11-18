@@ -63,7 +63,7 @@ function getCardDomTemplate(title) {
                     left:5%; 
                     right:5%; 
                     display: block; 
-                    color:white;
+                    color: #313131;
                     text-align: center; 
                     font-family: 'Playfair Display Black', serif;
                     margin: 0px;">We accomplished alot this year and we'll accomplish even more next year!</p> 
@@ -92,12 +92,12 @@ function getCardDomTemplate(title) {
 
             <p id="signature" class="autoFIT" contentEditable="" spellcheck="false" 
             style="position:absolute; 
-            top: 60%;
+            top: 62%;
             bottom: 5%;
             right: 5%;
             left: 5%;
             display: block; 
-            color:black; 
+            color:#313131; 
             font-family: 'Playfair Display Black', serif;
             margin: 0px; 
             text-align: center;">Happy Holidays</p>
