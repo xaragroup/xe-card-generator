@@ -45,7 +45,80 @@ function getCardDomTemplate(title) {
 
 
 
-    switch (title) {        
+    switch (title) {  
+        
+    case "christmas_lights_thumb.png":
+    return `
+<div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
+${defaultStyling}
+
+    <div class="sizing" id="card-inside-right" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+        <img src="${title.replace("_thumb", "_inside_right")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+
+        <p class="autoFIT" id="message" contenteditable="" spellcheck="false" 
+        style=" position:absolute; 
+                top:20%; 
+                bottom:20%; 
+                left:5%; 
+                right:5%; 
+                display: block; 
+                color:#424242;
+                text-align: center; 
+                font-family: 'Playfair Display', serif;
+                margin: 0px;">Brilliant work by everyone this year, and look forward to a better next year!</p> 
+
+        <img id="logoPreview" onclick="removeLogo();" src="./removeLogo.png" 
+        style="position: absolute; 
+        bottom: 5%; 
+        left: 0%; 
+        right: 0%; 
+        margin: auto; 
+        height: 15%;">
+
+            </div>
+
+
+
+    <div class="sizing" id="card-inside-left" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto;">
+        <img onmousedown="setCardTo('close')" src="${title.replace("_thumb", "_inside_left")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+    </div>
+
+    <div class="sizing" id="card-cover" style="position: absolute; left:0px; right:0px; top:0px; bottom:0px;margin:auto">
+        <img onmousedown="setCardTo('open')" src="${title.replace("_thumb", "_cover")}" style="position:absolute; width:100%; height:100%; top:0px; left:0px;">
+        
+        <p id="coverMessage" class="autoFIT" contentEditable="" spellcheck="false" 
+        style="position:absolute; 
+        top: 21%;
+        bottom: 69%;
+        right: 24%;
+        left: 19%;
+        display: block; 
+        color:white; 
+        font-family: 'Open Sans';
+        font-weight: 700; 
+        margin: 0px; 
+        text-align: center;">YOUR COMPANY<br>NAME</p>
+
+        <p class="autoFIT" id="signature" contenteditable="" spellcheck="false" 
+        style="position:absolute; 
+        top: 40%;
+        bottom: 14%;
+        right:5%; 
+        left:5%; 
+        display: block;
+        color:#424242;
+        text-align: center; 
+        font-family: 'Playfair Display', serif;
+        margin: 0px;">Wishing you a happy & joyful festive season</p>
+
+        
+        </div>
+</div>
+`
+        
+
+
+
         case "a_real_estate_thumb.png":
             return `
         <div id="card" style="width: 100vw; height: calc( 100vh - 390px); position: absolute; left: 0px; top: 0px;">
