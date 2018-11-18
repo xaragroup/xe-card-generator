@@ -83,9 +83,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 <head>
     <meta charset="UTF-8">
     <title>Xara Cloud's Input page</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=850">
 
     <link rel="stylesheet" type="text/css" href="./input.css">
     <link rel="stylesheet" type="text/css" href="./text_styles.css">
@@ -135,7 +133,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 
 
 
-    <form id="createCardForm" <!--action="fileupload" method="post" --> enctype="multipart/form-data" autocomplete="off">
+    <form id="createCardForm" enctype="multipart/form-data" autocomplete="off">
 
         <!-- information -->
         <div class="hidden" id="form">
@@ -156,7 +154,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
             <label id="contactLabel">
                 <input id="contactCheck" type="checkbox" name="contact" unchecked> Yes I would like to hear about more stuff from
                 <a href="https://www.xara.com">Xara Cloud</a>
-                <div id="privacy">We will treat your data with care and you can unsubscribe for free anytime. See our <a href="http://xara.cloud/privacy/" title="Privacy Policy" target="_blank">Privacy Policy</a> for more information.</div>
+                <div id="privacy">We will treat your data with care and you can unsubscribe for free anytime. See our <a href="http://xara.cloud/privacy/" title="Privacy Policy" target="_blank">Privacy Policy</a>.</div>
             </label>
 
             <label id="snowEnable">
