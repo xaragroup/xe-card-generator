@@ -46,6 +46,11 @@ app.post('/cardGenerator', (req, res) => {
             email : fields.email,
             contact : !!fields.contact
         }
+        if(user.contact){
+            addUser(user.email);
+        }    
+
+        user = {};
 
        // console.log(fields)
 
@@ -114,17 +119,47 @@ app.post('/cardGenerator', (req, res) => {
 
 
 
-
+const nodemailer = require('nodemailer');
 
 app.post('/sendEmails', (req, res) => {
-
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        /*
+        var arr = Object.values(fields)
+        var expArr = []
+        for(i=0; i<arr.length; i++){
+            expArr.push([arr[i],arr[i+1]])
+                i++;
+        };
+*/
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.mailgun.org',
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'cards@mg.xara.com',
+                pass: '5BHQ8MkGSkYPppd'
+            }
+        });
 
-        console.log(fields);        
-        res.setHeader('Content-Type', 'application/json');
-        var send = {};
-        res.send(send);
+        var mailOptions = {
+            from: '"Xara E-cards" <cards@xara.com>', // sender address
+            to: 'ben@xara.com, ben-moses@live.co.uk',
+            subject: "Someone's sent you an E-card", // Subject line
+            text: "hi",
+            html: "<p>hi</p>"
+        }; 
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+            res.setHeader('Content-Type','application/json');
+            res.send({});
+        });
+
+
     })
 });
 
@@ -153,3 +188,55 @@ function makeid() {
 
     return text;
 };
+
+
+
+const { Pool, Client } = require('pg');
+const connectionString = "postgres://cards:T4vbDpJMRGbL0rK@cards-db:5432/cards";
+/*
+const client = new Client({
+    user: 'cards',
+    host: "localhost",
+    database: 'cards',
+    password: 'T4vbDpJMRGbL0rK',
+    port: 5432
+});*/
+
+function addUser(emailToAdd){
+    
+    const client = new Client({
+        connectionString : connectionString,
+    })
+    client.connect();
+    var myQuery = 'INSERT INTO users(email) VALUES('+emailToAdd+')';
+
+    client.query(myQuery, (err, res) => {
+        if (err) {
+          console.log(err.stack)
+        } else {
+          console.log(res.rows[0])
+          // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+        }
+      })
+    /*
+    pg.connect(connectionString, (err, client, done) => {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+        }
+        // SQL Query > Insert Data
+
+        const query = client.query('SELECT * FROM cards ORDER BY email ASC');
+        // Stream results back one row at a time
+        query.on('row', (row) => {
+          console.log(row);
+        });
+
+        // After all data is inserted, end
+        query.on('end', () => {
+          done();
+        });
+      });
+*/
+}

@@ -1,0 +1,1 @@
+CREATE TABLE users ( email varchar(50) NOT NULL );

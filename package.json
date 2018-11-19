@@ -19,6 +19,8 @@
   "homepage": "https://github.com/BenMoses/xe-card-generator#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "formidable": "^1.2.1"
+    "formidable": "^1.2.1",
+    "nodemailer": "^4.7.0",
+    "pg": "^7.6.1"
   }
 }
