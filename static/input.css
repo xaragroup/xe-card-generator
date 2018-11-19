@@ -338,7 +338,9 @@ box-shadow: 7px 10px 30px -9px rgba(0,0,0,0.75);
 #emailLabel {
     position: absolute;
     top: 20px;
-    left: 390px;
+    left: 390px;    
+    width: 700px;
+    text-align: left;
 }
 
 #compLabel {    
