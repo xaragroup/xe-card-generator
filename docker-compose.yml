@@ -23,5 +23,7 @@ services:
       POSTGRES_PASSWORD: T4vbDpJMRGbL0rK
       POSTGRES_DB: cards
       POSTGRES_HOST: "localhost:5432"
+    volumes:
+      - './db-backup:/mnt/backup'
     restart: always 
     container_name: cards-db
