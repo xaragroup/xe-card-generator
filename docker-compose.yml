@@ -25,5 +25,6 @@ services:
       POSTGRES_HOST: "localhost:5432"
     volumes:
       - './db-backup:/mnt/backup'
+      - './scripts/postgres-backup.sh:/scripts/postgres-backup.sh:ro'
     restart: always 
     container_name: cards-db
