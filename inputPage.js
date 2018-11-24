@@ -146,6 +146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1 class="" id="backgroundInstructions">Firstly choose your E-card’s background:
         </h1>
         <h1 class="hidden" id="cardInstructions">Pick a card design</h1>
+        <h1 class="hidden" id="editInstructions">Now click into the card preview, to Open, Close and Edit your card!</h1>
         <h1 class="" id="backButton">Back
     </div>
 

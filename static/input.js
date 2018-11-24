@@ -108,6 +108,7 @@ function goToStep(option) {
             document.querySelector('#card-picker').classList = 'hidden';
 
             //hide info
+            document.querySelector('#editInstructions').classList = 'hidden';
             document.querySelector('#toSubmit').classList = "";
             document.querySelector('#form').classList = "hidden";
 
@@ -135,6 +136,7 @@ function goToStep(option) {
             }
             //hide info
 
+            document.querySelector('#editInstructions').classList = 'hidden';
             document.querySelector('#toSubmit').classList = "";
             document.querySelector('#form').classList = "hidden";
 
@@ -160,6 +162,7 @@ function goToStep(option) {
             document.querySelector('#toInfo').classList = 'hidden';
 
             //show info
+            document.querySelector('#editInstructions').classList = '';
             document.querySelector('#toSubmit').classList = "button";
             document.querySelector('#form').classList = "";
             //open card
@@ -405,5 +408,5 @@ function scrollOptions(event){
             currOverflow.currentScroll = max;
         }
         picker.style.left = currOverflow.currentScroll + "px";
-    }, 8);
+    }, 4);
 }

@@ -71,13 +71,26 @@ body {
 #backgroundInstructions.inactive {
     opacity:0;
 }
-
 #cardInstructions {
-    left: 0px !important;
-    right: 0px; 
+    left: 200px !important;
+    right: 200px; 
     margin-left: auto;
     margin-right:auto;
 }
+#editInstructions {
+    left: 200px !important;
+    right: 200px; 
+    margin-left: auto;
+    margin-right:auto;
+}
+
+
+@media (max-width: 1000px) {
+    #editInstructions {
+        font-size: 20px !important;
+    }
+}
+
 #cardInstructions.inactive {
     opacity:0;
 }
