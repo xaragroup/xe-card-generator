@@ -7,8 +7,6 @@ const app = express();
 const port = 3000;
 app.use(express.static(__dirname + '/static'));
 
-
-
 app.get('/', (req, res) => {
     let resources = __dirname + "/resources";
     let backgrounds = resources + "/backgrounds/";
@@ -36,7 +34,6 @@ app.get('/', (req, res) => {
 });
 
 
-
 app.post('/cardGenerator', (req, res) => {
 
     var form = new formidable.IncomingForm();
@@ -46,8 +43,11 @@ app.post('/cardGenerator', (req, res) => {
             email : fields.email,
             contact : !!fields.contact
         }
-
-       // console.log(fields)
+        if(user.contact){
+            addUser(user.email);
+        }else {
+            user = {};
+        }
 
         var card = {
             cardContents : fields.cardContent,
@@ -111,21 +111,47 @@ app.post('/cardGenerator', (req, res) => {
 
 
 
+var nodemailer = require('nodemailer');
 
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport({
+    host: 'smtp.mailgun.org',
+    port: 465,
+    secure: true, // upgrade later with STARTTLS
+    auth: {
+        user: 'cards@mg.xara.com',
+        pass: '5BHQ8MkGSkYPppd'
+    }
+});
 
-
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: '"Xara E-cards" <cards@xara.com>', // sender address
+    to: 'ben-moses@live.co.uk', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world 🐴', // plaintext body
+    html: '<b>Hello world 🐴</b>' // html body
+};
 
 
 app.post('/sendEmails', (req, res) => {
-
+    var emailAddress;
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-
-        console.log(fields);        
-        res.setHeader('Content-Type', 'application/json');
-        var send = {};
-        res.send(send);
-    })
+        mailOptions.to = "ben-moses@live.co.uk" || "" + fields.email;
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                res.setHeader('Content-Type', 'application/json');
+                var send = {err : true};
+                res.send(send);
+            }else{
+                res.setHeader('Content-Type', 'application/json');
+                send = {err : false};
+                res.send(send);
+            }
+        });
+    });
 });
 
 
@@ -153,3 +179,22 @@ function makeid() {
 
     return text;
 };
+
+function addUser(emailAddress) {
+    const { Client } = require('pg');
+    const connectionString = 'postgresql://cards:T4vbDpJMRGbL0rK@cards-db:5432/cards';
+
+    const client = new Client({
+        connectionString: connectionString,
+    })
+    client.connect()
+
+    client.query("INSERT INTO users (email) VALUES ('"+emailAddress+"');")
+    .then(res => {
+        //console.log(res);
+    })
+    .catch(e => console.error(e.stack))
+}
+
+
+

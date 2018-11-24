@@ -327,7 +327,7 @@ function initTextEdits(el) {
 
 function sendForm() {
     var formData = new FormData(document.querySelector('#createCardForm'));
-    var xhr = new XMLHttpRequest;
+    var xhr = new XMLHttpRequest();
     var emailInput = document.querySelector('#emailInput');
     if (emailInput.value == "") {
         alert('Please insert an email address.');
@@ -353,24 +353,24 @@ function sendForm() {
 
 
 function sendEmails(){
-    var formData = new FormData(document.querySelector('#sendEmailForm'));
-    var xhr = new XMLHttpRequest;
-    var firstInput = document.querySelector('#sendEmailForm > input');
+    var formData = new FormData();
+    var xhr2 = new XMLHttpRequest();
+    var emailInput = document.querySelector('#emailInput');
 
-    if(firstInput.value == ""){
-        alert('Please insert at least one email address.');
-        firstInput.style.backgroundColor = "lightyellow";
-        return;
-    }
+    xhr2.responseType = 'json';
     
-    xhr.responseType = 'json';
-    
-    xhr.onload  = function() {
-        document.querySelector('#sendEmailButton').textContent = "Emails sent"
+    xhr2.onload  = function() {
+        if(xhr2.response.err){
+            document.querySelector('#sendEmailButton').textContent = "Hmm somethings gone wrong, try sharing it ";
+        }else {
+            document.querySelector('#sendEmailButton').textContent = "Email sent!";
+        }
     };
 
-    xhr.open('post', '/sendEmails', true);
-    xhr.send(formData);
+    formData.append("email", emailInput.value);
+
+    xhr2.open('post', '/sendEmails', true);
+    xhr2.send(formData);
 }
 
 function updateShareLinks(cardURL) {

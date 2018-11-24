@@ -12,6 +12,8 @@ services:
       - /app/node_modules/
     ports:
       - "3000:3000"
+    links:
+      - cards-db
     container_name: cards-web
 
   cards-db:
@@ -22,9 +24,9 @@ services:
       POSTGRES_USER: cards
       POSTGRES_PASSWORD: T4vbDpJMRGbL0rK
       POSTGRES_DB: cards
-      POSTGRES_HOST: "localhost:5432"
     volumes:
       - './db-backup:/mnt/backup'
       - './scripts/postgres-backup.sh:/scripts/postgres-backup.sh:ro'
+      POSTGRES_HOST: "localhost:5430"
     restart: always 
     container_name: cards-db
