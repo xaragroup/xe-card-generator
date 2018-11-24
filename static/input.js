@@ -8,9 +8,6 @@ var currentBackground, currentCard, currentEffect = document.querySelector('#eff
 
 
 backgrounds.forEach(background => {
-    background.addEventListener('click', moveToCenter.bind({ cont: document.querySelector('#background-picker'), el: background }
-    ));
-
     background.addEventListener('click', function () {
         var imageLocation = this.parentElement.getAttribute("for");
 
@@ -26,9 +23,6 @@ backgrounds.forEach(background => {
 })
 
 cards.forEach(card => {
-    card.addEventListener('click', moveToCenter.bind({ cont: document.querySelector('#card-picker'), el: card }
-    ));
-
     card.addEventListener('click', function () {
         hasSelectedCard = true;
         var imageLocation = this.parentElement.getAttribute("for");
@@ -81,38 +75,7 @@ backgroundFilters.forEach(filter => {
         background.style.backgroundBlendMode = "multiply";
         background.style.backgroundColor = filter.style.backgroundColor;
     });
-})
-
-
-
-
-function moveToCenter() {
-    var container = this.cont.getBoundingClientRect(); //dimensions for wrapper
-
-    var el = this.el; //element to be centered
-    var size = el.getBoundingClientRect();
-    var max = container.width - window.innerWidth + 50;
-
-    var wantedLeft = (window.innerWidth / 2) - (size.width / 2);
-    var current = container.left;
-
-    var diff = size.left - wantedLeft; //diff between its current pos and wantedPos
-
-    var setValue = current - diff;
-    /*
-    if (setValue > 0) {
-        setValue = 0;
-    }
-
-    if (setValue < -max) {
-        setValue = -max;
-    }
-*/
-
-    this.cont.style.left = `${setValue}px`;
-};
-
-
+});
 
 function hideWelcomePanel() {
     document.querySelector('#welcomePanel').style.opacity = 0;
