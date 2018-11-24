@@ -242,7 +242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img id="cardCover" src="./intro_card_cover.png">    
 
         </img>
-        <div class="button" id="coverButton" onclick="hideWelcomePanel()">Show some love</div>
+        <div class="button" id="coverButton" onclick="hideWelcomePanel()">Share some love</div>
     </div>
 
 
