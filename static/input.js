@@ -361,3 +361,49 @@ function toggleSnow(){
     }
     stopSnow = initSnow(document.querySelector('#cardPreview'));
 }
+
+
+var currentInterval, latestEv;
+var overflow = document.querySelectorAll('.overflowHandler');
+overflow[0].currentScroll = 0;
+overflow[1].currentScroll = 0;
+overflow[0].addEventListener('mousemove', function(){ latestEv = event; });
+overflow[1].addEventListener('mousemove', function(){ latestEv = event; });
+
+overflow[0].addEventListener('mouseenter', scrollOptions);
+overflow[1].addEventListener('mouseenter', scrollOptions);
+
+overflow[0].addEventListener('mouseleave', stop );
+overflow[1].addEventListener('mouseleave', stop );
+
+function stop(){
+    clearInterval(currentInterval);
+}
+
+function scrollOptions(event){
+    var currOverflow = this;
+    var picker = this.querySelector('#background-picker') || this.querySelector('#card-picker');
+    var min = 0;
+    var max = window.innerWidth - picker.getBoundingClientRect().width;
+
+    currentInterval = setInterval(function () {
+
+        var relPos = (latestEv.clientX / currOverflow.getBoundingClientRect().width) * 100; //% x pos
+        if (relPos < 20) {
+            //move rightwards
+            currOverflow.currentScroll++
+        }
+        if (relPos > 80) {
+            //move leftwards
+            currOverflow.currentScroll--
+        }
+
+        if(currOverflow.currentScroll > min){ //min being 0
+            currOverflow.currentScroll = min;
+        }
+        if(currOverflow.currentScroll < max){ //min being 0
+            currOverflow.currentScroll = max;
+        }
+        picker.style.left = currOverflow.currentScroll + "px";
+    }, 8);
+}
