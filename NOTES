@@ -1,0 +1,53 @@
+SETUP:
+
+1. docker-compose up --build || docker-compose up --build cards-web, docker-compose up --build cards-db in 2 terminals
+2. docker exec -it cards-db psql -U cards cards  > in a 3rd terminal
+    2.1. CREATE TABLE users (email TEXT);
+    2.2. INSERT INTO users (email) VALUES ('ben.moses@xara.com');
+Close 3rd terminal
+Test
+
+
+
+---------------------------------------------
+
+COMMANDS:
+> docker ps - shows running containers
+> docker-compose up - runs the docker-compose file, -f flag for specifying filename
+> ctrl + c to gracefully disconnect
+> docker exec -it cards-db psql -U cards
+> docker stop $(docker ps -q)
+> \c cards      === connect to cards db (db is default to username)
+> \l   ==== lists db
+> \dt ==== lists tables in db
+> SELECT * FROM ???? === Get all from dbname 
+
+
+/*MANUAL STEPS:
+
+
+\c cards; not necessary as we sign in with user cards
+
+CREATE SCHEMA public;
+CREATE TABLE users (email TEXT);
+INSERT INTO users (email) VALUES ('ben.moses@xara.com');
+
+
+*/
+
+
+tim : 
+psql -h localhost -p 5432 -U docker -d $docker -a -f createDatabase.sql
+
+psql "dbname=dbhere host=hosthere user=userhere password=pwhere port=5432 sslmode=require"
+
+
+psql ""
+
+
+docker exec -it cards-db psql -U cards cards
+
+
+****COMMANDS ARE CASE SENSITIVE AND VERY SPECIFIC, INCORRECT COMMAND JUST FAILS SILENTLY :@
+
+docker exec -it cards-db psql -U cards -d $docker -a -f .\init\init_db_tables.sql

@@ -36,7 +36,6 @@ app.get('/', (req, res) => {
 });
 
 
-
 app.post('/cardGenerator', (req, res) => {
 
     var form = new formidable.IncomingForm();
@@ -46,8 +45,11 @@ app.post('/cardGenerator', (req, res) => {
             email : fields.email,
             contact : !!fields.contact
         }
-
-       // console.log(fields)
+        if(user.contact){
+            addUser(user.email);
+        }else {
+            user = {};
+        }
 
         var card = {
             cardContents : fields.cardContent,
@@ -153,3 +155,22 @@ function makeid() {
 
     return text;
 };
+
+function addUser(emailAddress) {
+    const { Client } = require('pg');
+    const connectionString = 'postgresql://cards:T4vbDpJMRGbL0rK@cards-db:5432/cards';
+
+    const client = new Client({
+        connectionString: connectionString,
+    })
+    client.connect()
+
+    client.query("INSERT INTO users (email) VALUES ('"+emailAddress+"');")
+    .then(res => {
+        console.log(res);
+    })
+    .catch(e => console.error(e.stack))
+}
+
+
+
