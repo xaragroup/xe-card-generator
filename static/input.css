@@ -367,8 +367,8 @@ box-shadow: 7px 10px 30px -9px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 0px 17px -1px rgba(0,0,0,0.32);
     -moz-box-shadow: 0px 0px 17px -1px rgba(0,0,0,0.32);
     box-shadow: 0px 0px 17px -1px rgba(0,0,0,0.32);
-    min-width: 200px;
-    margin: 20px auto !important;
+    min-width: 200px;    
+    margin: 5px auto 20px auto !important;  
     display: inline-block;
 
 }
@@ -562,7 +562,7 @@ box-shadow: 7px 10px 30px -9px rgba(0,0,0,0.75);
 #sharePanel {
     position: absolute;
     width: 550px;
-    top: 50px;
+    top: 150px;
     margin: 0px auto;
     left: 0px;
     right: 0px;

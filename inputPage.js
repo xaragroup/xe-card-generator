@@ -150,8 +150,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1 class="" id="backButton">Back
     </div>
 
-    <div class="button disabled" id="toInfo" onclick="goToStep( 'info' )">Next, add your message</div>
-    <div class="button disabled" id="toCards" onclick="goToStep( 'card' )">Choose a card design...</div>
+    <div class="button disabled" id="toInfo" onclick="goToStep( 'info' )">Finally, add your message</div>
+    <div class="button disabled" id="toCards" onclick="goToStep( 'card' )">Next, choose an E-card design</div>
 
 
 
