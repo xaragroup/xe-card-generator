@@ -239,7 +239,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="welcomePanel">
         <h1>Create and send your own E-card
         </h1>
-        <img id="cardCover" src="./intro_card_cover.png">    
+        <img id="cardCover" src="./intro_card_cover.png" onclick="hideWelcomePanel()">    
 
         </img>
         <div class="button" id="coverButton" onclick="hideWelcomePanel()">Share some love</div>
