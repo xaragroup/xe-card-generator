@@ -4,8 +4,9 @@ SETUP:
 2. docker exec -it cards-db psql -U cards cards  > in a 3rd terminal
     2.1. CREATE TABLE users (email TEXT);
     2.2. INSERT INTO users (email) VALUES ('ben.moses@xara.com');
-Close 3rd terminal
-Test
+3. TEST on the app
+4. In terminal 3 do SELECT * FROM users; should return all user emails
+5. Close 3rd terminal
 
 
 
