@@ -142,12 +142,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <div id="header">
-        </h1>
-        <h1 class="" id="backgroundInstructions">Firstly choose your E-card’s background:
-        </h1>
-        <h1 class="hidden" id="cardInstructions">Pick a card design</h1>
-        <h1 class="hidden" id="editInstructions">Now click into the card preview, to Open, Close and Edit your card!</h1>
-        <h1 class="" id="backButton">Back
+        <h1 class="" id="backgroundInstructions">Firstly choose your E-card’s background:</h1>
+        <h1 class="hidden" id="cardInstructions">Now, pick your E-card design</h1>
+        <h1 class="hidden" id="editInstructions">Finally, click into the card preview to Open, Close and Edit your card!</h1>
+        <h1 class="" id="backButton">Back</h1>
     </div>
 
     <div class="button disabled" id="toInfo" onclick="goToStep( 'info' )">Finally, add your message</div>
@@ -177,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input id="compInput" type="text" name="company" value="www.example.com">
 -->
             <label id="contactLabel">
-                <input id="contactCheck" type="checkbox" name="contact" unchecked> Yes I would like to hear about more stuff from
+                <input id="contactCheck" type="checkbox" name="contact" unchecked> Yes I want to to learn about more cool stuff from
                 <a href="https://www.xara.com">Xara Cloud</a>
                 <div id="privacy">We will treat your data with care and you can unsubscribe for free anytime. See our <a href="http://xara.cloud/privacy/" title="Privacy Policy" target="_blank">Privacy Policy</a>.</div>
             </label>
@@ -187,7 +185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </label>
         </div>
 
-        <div class="button hidden" id="toSubmit" onclick="sendForm()">Get your e-card</div>
+        <div class="button hidden" id="toSubmit" onclick="sendForm()">Share your E-card</div>
 
         <!-- card -->
         <div class="overflowHandler">
@@ -215,7 +213,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="cover"></div>
     <div id="sharePanel">
         <div id="closeShare" onclick="toggleShare(false)">x</div>
-        <h2>Share your e-card</h2>
+        <h2>Share your E-card</h2>
         <p id="publishedTo">Your e-card is published to here:</p>
         <a href="" target="_blank" rel="nofollow"><p id="cardURL">UNDEFINED</p></a>
         <hr>
@@ -231,7 +229,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <hr>
         <p id="emailTo">Email:</p>
         <p id="emailText">Click below to recieve an email, which you can forward onto all your colleagues, friends and family. <i>Don't forget to check your spam folder!</i></p>            
-        <div id="sendEmailButton" onclick="sendEmails()">Send me my Email!</div>
+        <div id="sendEmailButton" onclick="sendEmails()">Send me my E-card!</div>
 
 
     </div>
