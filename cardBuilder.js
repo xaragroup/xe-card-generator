@@ -11,7 +11,7 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, snowEffect, 
     <meta property="og:url"                content="${exportURL}" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="My Christmas E-card" />
-    <meta property="og:description"        content="Create your very own e-card in seconds with xara.com" />
+    <meta property="og:description"        content="Create your very own E-card in seconds with xara.com" />
     <meta property="og:image:width"        content="1048"/> 
     <meta property="og:image:height"       content="549"/>
     <meta property="og:image"              content="https://cards.xara.com/envelope.png" />
@@ -20,7 +20,7 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, snowEffect, 
     this.twitter = `
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="My Christmas E-card">
-    <meta name="twitter:description" content="Create your very own e-card in seconds with xara.com" >
+    <meta name="twitter:description" content="Create your very own E-card in seconds with xara.com" >
     <meta name="twitter:image" content="https://cards.xara.com/envelope.png">`
 
 
@@ -118,6 +118,10 @@ footer a {
 logoPreview {
     pointer-events:none;
 }
+
+.autoFIT {
+    pointer-events: none;
+}
     `;
 
     this.runScripts = `
@@ -167,7 +171,7 @@ logoPreview {
         <html>
         <head>
         <meta charset="UTF-8">
-        <title>Your e-card</title>
+        <title>Your E-card</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         ${this.style}
