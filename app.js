@@ -112,6 +112,7 @@ app.post('/cardGenerator', (req, res) => {
 
 
 var nodemailer = require('nodemailer');
+var {generateEmail} = require('./emailGen.js');
 
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
@@ -128,7 +129,7 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
     from: '"Xara E-cards" <cards@xara.com>', // sender address
     to: 'ben-moses@live.co.uk', // list of receivers
-    subject: 'Hello ✔', // Subject line
+    subject: 'Your Xara E-card!', // Subject line
     text: 'Hello world 🐴', // plaintext body
     html: '<b>Hello world 🐴</b>' // html body
 };
@@ -138,6 +139,9 @@ app.post('/sendEmails', (req, res) => {
     var emailAddress;
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        
+        mailOptions.text = `Someone has sent you an E-card. It's available to see at ${fields.url}`;
+        mailOptions.html = generateEmail(fields.url)
         mailOptions.to = "ben-moses@live.co.uk" || "" + fields.email;
         // send mail with defined transport object
         transporter.sendMail(mailOptions, function(error, info){

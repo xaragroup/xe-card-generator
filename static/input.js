@@ -322,6 +322,7 @@ function sendEmails(){
     var formData = new FormData();
     var xhr2 = new XMLHttpRequest();
     var emailInput = document.querySelector('#emailInput');
+    var URL = document.querySelector('#cardURL');
 
     xhr2.responseType = 'json';
     
@@ -334,6 +335,7 @@ function sendEmails(){
     };
 
     formData.append("email", emailInput.value);
+    formData.append("url", URL.textContent);
 
     xhr2.open('post', '/sendEmails', true);
     xhr2.send(formData);
