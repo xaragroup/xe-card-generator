@@ -142,7 +142,7 @@ app.post('/sendEmails', (req, res) => {
         
         mailOptions.text = `Someone has sent you an E-card. It's available to see at ${fields.url}`;
         mailOptions.html = generateEmail(fields.url)
-        mailOptions.to = "ben-moses@live.co.uk" || "" + fields.email;
+        mailOptions.to = "" + fields.email;
         // send mail with defined transport object
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
