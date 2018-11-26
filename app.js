@@ -52,8 +52,6 @@ app.post('/cardGenerator', (req, res) => {
         var card = {
             cardContents : fields.cardContent,
             isSnowing : !!fields.snow,
-            imageLocation : "" && files.filetoupload && files.filetoupload.path,
-            imageName : "" && files.filetoupload && files.filetoupload.name,
             uniqueLocation : makeid(),
             uniqueName : makeid(),
             src : ""
@@ -62,24 +60,28 @@ app.post('/cardGenerator', (req, res) => {
 
         //handle the logo
         //if user submitted an image
-        if (card.imageLocation != "" && card.imageName != ""){
-            fs.copyFile(card.imageLocation, __dirname + '/exports/' + card.uniqueLocation + "/" + card.imageName, function(){
+        if (files.filetoupload.size > 0){
+
+            card.imageLocation = files.filetoupload.path;
+            card.imageName = files.filetoupload.name;
+
+            fs.copyFile(card.imageLocation, __dirname + '/exports/' + card.imageName, function(){
                 if(err) {
                     console.log(new Date());
                     console.log(err);
                     throw err;
                 };
-                card.imageLocation = __dirname + '/exports/' + card.uniqueLocation + "/" + card.imageName;
+                card.imageLocation = __dirname + '/exports/' + card.imageName;
                 console.log('Logo moved to :' + card.imageLocation);
 
-                fs.rename(card.imageLocation, __dirname + '/exports/' + card.uniqueLocation + "/" + card.uniqueName, function(){
+                fs.rename(card.imageLocation, __dirname + '/exports/' + card.uniqueName, function(){
                     if(err) {
                         console.log(new Date());
                         console.log(err);
                         throw err;
                     };
 
-                    card.imageLocation = __dirname + '/exports/' + card.uniqueLocation + "/" + card.uniqueName;
+                    card.imageLocation = __dirname + '/exports/' + card.uniqueName;
                     console.log('Logo renamed to :' + card.imageLocation);
                 })
 
@@ -88,7 +90,7 @@ app.post('/cardGenerator', (req, res) => {
         }
         
         
-        card.src = card2Gen(card.cardContents, card.imageName, card.isSnowing, card.exportURL);
+        card.src = card2Gen(card.cardContents, card.uniqueName, card.isSnowing, card.exportURL);
 
         fs.mkdirSync( __dirname +"/exports/"+ card.uniqueLocation)
         fs.writeFile( __dirname +"/exports/"+ card.uniqueLocation+ "/index.html", card.src, function (err) {
@@ -178,7 +180,7 @@ function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for (var i = 0; i < 8; i++)
+    for (var i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
