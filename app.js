@@ -143,24 +143,32 @@ app.post('/sendEmails', (req, res) => {
     form.parse(req, function (err, fields, files) {
         
         mailOptions.text = `Someone has sent you an E-card. It's available to see at ${fields.url}`;
-        mailOptions.html = generateEmail(fields.url)
-        mailOptions.to = "" + fields.email;
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, function(error, info){
-            if(error){
-                res.setHeader('Content-Type', 'application/json');
-                var send = {err : true};
-                res.send(send);
-            }else{
-                res.setHeader('Content-Type', 'application/json');
-                send = {err : false};
-                res.send(send);
-            }
-        });
+
+        for(i=1; i<6; i++){
+            if(fields["name"+i] == ""){ break; }//exit early
+
+            mailOptions.html = generateEmail(fields.url, fields["name"+i]);
+            mailOptions.to = "" + fields["email"+i];
+            send(mailOptions);
+        };
     });
+
+    
+    res.setHeader('Content-Type', 'application/json');
+    response = {err : false};
+    res.send(response);
 });
 
-
+function send(enclosedMailOptions){
+// send mail with defined transport object
+    transporter.sendMail(enclosedMailOptions, function(error, info){
+        if(error){
+            console.log(error);
+        }else{
+            console.log("email sent");
+        }
+    });
+}
 
 
     app.get('/*/', (req, res) => { //image req

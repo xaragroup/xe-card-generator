@@ -227,11 +227,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a rel="nofollow" ><div id="pinterest" class="social" title="Share to Pinterest!"></div> </a>
 
         <hr>
-        <p id="emailTo">Email:</p>
-        <p id="emailText">Click below to recieve an email, which you can forward onto all your colleagues, friends and family. <i>Don't forget to check your spam folder!</i></p>            
-        <div id="sendEmailButton" onclick="sendEmails()">Send me my E-card!</div>
+        <p id="emailTo">Email to:</p>
+        <form id="sendEmailForm" autocomplete="off">
+           <input class="shareForm email" type="email" name="email1" placeholder="#1 Email">
+           <input class="shareForm name" type="text" name="name1" placeholder="#1 Name"><br>
 
+           <input class="shareForm email" type="email" name="email2" placeholder="#2 Email">
+           <input class="shareForm name" type="text" name="name2" placeholder="#2 Name"><br>
 
+           <input class="shareForm email" type="email" name="email3" placeholder="#3 Email">
+           <input class="shareForm name" type="text" name="name3" placeholder="#3 Name"><br>
+
+           <input class="shareForm email" type="email" name="email4" placeholder="#4 Email">
+           <input class="shareForm name" type="text" name="name4" placeholder="#4 Name"><br>
+
+           <input class="shareForm email" type="email" name="email5" placeholder="#5 Email">
+           <input class="shareForm name" type="text" name="name5" placeholder="#5 Name"><br>
+
+           <p id="emailText">Currently we only allow you to share to 5 emails at once. You could share via social media or using the Link. <br> We will change the email to be personalised to the names you entered.</p>            
+           <div id="sendEmailButton" onclick="sendEmails()">Send my E-card!</div>
+       </form>
     </div>
     
     <div id="welcomePanel">
@@ -265,6 +280,9 @@ document.querySelector('#cover').addEventListener('click', function () { toggleS
 var share = document.querySelector('#sharePanel');
 var cover = document.querySelector('#cover');
 function toggleShare(bool) {
+    document.querySelector('#sendEmailButton').textContent = "Send my E-card!";
+    document.querySelector('#sendEmailForm').reset();
+    
     if (bool) {
         cover.style.display = "block";
         share.style.display = "block";

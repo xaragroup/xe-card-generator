@@ -1,4 +1,4 @@
-module.exports.generateEmail = function generateEmail(url){
+module.exports.generateEmail = function generateEmail(url, name){
 
 
 
@@ -95,7 +95,7 @@ module.exports.generateEmail = function generateEmail(url){
                 padding-top: 25px;
                 color: #000000;
                 font-family: sans-serif;" class="header">
-                    You've recieved an E-card!
+                    ${name}, You've recieved an E-card!
             </td>
         </tr>
         

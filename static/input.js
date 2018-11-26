@@ -319,9 +319,8 @@ function sendForm() {
 
 
 function sendEmails(){
-    var formData = new FormData();
+    var formData = new FormData(document.querySelector('#sendEmailForm'));
     var xhr2 = new XMLHttpRequest();
-    var emailInput = document.querySelector('#emailInput');
     var URL = document.querySelector('#cardURL');
 
     xhr2.responseType = 'json';
@@ -331,13 +330,15 @@ function sendEmails(){
             document.querySelector('#sendEmailButton').textContent = "Hmm somethings gone wrong, try sharing it ";
         }else {
             document.querySelector('#sendEmailButton').textContent = "Email sent!";
+            /*setTimeout(function(){
+                document.querySelector('#sendEmailButton').textContent = "Send my E-card!";
+            },2000)*/
         }
     };
-
-    formData.append("email", emailInput.value);
     formData.append("url", URL.textContent);
 
     xhr2.open('post', '/sendEmails', true);
+    document.querySelector('#sendEmailButton').textContent = "Sending...";
     xhr2.send(formData);
 }
 
