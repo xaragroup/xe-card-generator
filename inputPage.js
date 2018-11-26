@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 -->
             <label id="contactLabel">
                 <input id="contactCheck" type="checkbox" name="contact" unchecked> Yes I want to to learn about more cool stuff from
-                <a href="https://www.xara.com">Xara Cloud</a>
+                <a href="http://www.xara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker">Xara Cloud</a>
                 <div id="privacy">We will treat your data with care and you can unsubscribe for free anytime. See our <a href="http://xara.cloud/privacy/" title="Privacy Policy" target="_blank">Privacy Policy</a>.</div>
             </label>
 
@@ -246,12 +246,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-    <a href="https://www.xara.com"><div id="xara-logo"></div>
+    <a href="http://www.xara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker"><div id="xara-logo"></div>
     </a>
 
     <footer>
-    <p><a href="https://cards.xara.com" target="_blank">Create your own E-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com" target="_blank">These templates and more can be customized further...</a></p>
-       <p id="made">… made by the team at <a href="https://www.xara.com" target="_blank"><b>xara.com</b></a></p>
+    <p><a href="https://cards.xara.com" target="_blank">Create your own E-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker" target="_blank">These templates and more can be customized further...</a></p>
+       <p id="made">… made by the team at <a href="http://www.xara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker" target="_blank"><b>xara.com</b></a></p>
         </footer>
     <!--SCRIPTS -->
 

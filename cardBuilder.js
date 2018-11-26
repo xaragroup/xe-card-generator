@@ -25,12 +25,12 @@ module.exports.card2Gen = function card2Gen(cardContents, logoPath, snowEffect, 
 
 
     this.xaraBranding = `
-    <a href="https://www.xara.com"><div id="xara-logo"></div>
+    <a href="http://www.xara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker"><div id="xara-logo"></div>
      </a>
     
     <footer>
-    <p><a href="https://cards.xara.com" target="_blank">Create your own E-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com" target="_blank">These templates and more can be customized further...</a></p>
-    <p id="made">… made by the team at <a href="https://www.xara.com" target="_blank"><b>xara.com</b></a></p>
+    <p><a href="https://cards.xara.com" target="_blank">Create your own E-card</a>   |   <a style="cursor: pointer" href="https://cloud.ixara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker" target="_blank">These templates and more can be customized further...</a></p>
+    <p id="made">… made by the team at <a href="http://www.xara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker" target="_blank"><b>xara.com</b></a></p>
 </footer>
     
     `;
