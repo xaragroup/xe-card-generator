@@ -155,12 +155,24 @@ logoPreview {
     };
     window.addEventListener('resize', resizeCard);
     resizeCard();
-    
+
     setTimeout(function(){
         document.querySelectorAll('.autoFIT').forEach(el => {
-            initAutofit(el);
+            autofit(el);
         })
-    },150)
+    },600)
+
+    setTimeout(function(){
+        document.querySelectorAll('.autoFIT').forEach(el => {
+            autofit(el);
+        })
+    },1200)
+
+    window.addEventListener("load", function(event) {
+        document.querySelectorAll('.autoFIT').forEach(el => {
+            autofit(el);
+        })
+    });
     
     setCardTo('close')
     </script>
