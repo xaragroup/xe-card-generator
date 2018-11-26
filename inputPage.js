@@ -283,7 +283,7 @@ input.addEventListener('change', updateImageDisplay);
 
 function updateImageDisplay() {
     var src = input.files;
-
+    if(src.length > 0){
     var image = document.querySelector('#preview');
     image.style.opacity = 1;
     image.src = window.URL.createObjectURL(src[0]);
@@ -291,7 +291,7 @@ function updateImageDisplay() {
 
     document.querySelector('#logoPreview').src = window.URL.createObjectURL(src[0]);
     document.querySelector('#logoPreview').style.display = "block";
-    this.value = null;
+    }
 }
 
 function removeLogo(el) {
