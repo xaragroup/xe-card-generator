@@ -259,6 +259,12 @@ function autofit(element) {
 
 function initAutofit(element) {
 
+    element.addEventListener('keypress', function (ev) {
+        if (ev.keyCode == 13 && !ev.shiftKey) {
+            ev.preventDefault();
+        }
+    });
+
     //change string identifier to object
     if (typeof element != "object") {
         element = document.querySelector(element);
