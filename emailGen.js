@@ -46,7 +46,7 @@ module.exports.generateEmail = function generateEmail(url, name){
     <body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
         background: linear-gradient(to bottom right,#007ec5 0,#08a5af 100%);
         color: #000000;"
-        bg="linear-gradient(to bottom right,#007ec5 0,#08a5af 100%)"
+        bg="#08a5af"
         text="#000000">
     
     <!-- SECTION / BACKGROUND -->
@@ -95,7 +95,7 @@ module.exports.generateEmail = function generateEmail(url, name){
                 padding-top: 25px;
                 color: #000000;
                 font-family: sans-serif;" class="header">
-                    ${name}, You've recieved an E-card!
+                    ${name == "" ? "You've recieved an E-card!" : name + ", You've recieved an E-card!"}
             </td>
         </tr>
         
