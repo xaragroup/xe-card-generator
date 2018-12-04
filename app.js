@@ -145,7 +145,7 @@ app.post('/sendEmails', (req, res) => {
         mailOptions.text = `Someone has sent you an E-card. It's available to see at ${fields.url}`;
 
         for(i=1; i<6; i++){
-            if(fields["name"+i] == ""){ break; }//exit early
+            if(fields["email"+i] == ""){ break; }//exit if no email
 
             mailOptions.html = generateEmail(fields.url, fields["name"+i]);
             mailOptions.to = "" + fields["email"+i];
