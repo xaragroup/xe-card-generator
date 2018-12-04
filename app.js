@@ -141,12 +141,10 @@ app.post('/sendEmails', (req, res) => {
     var emailAddress;
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-        
         mailOptions.text = `Someone has sent you an E-card. It's available to see at ${fields.url}`;
 
         for(i=1; i<6; i++){
-            if(fields["email"+i] == ""){ break; }//exit if no email
-
+            if(fields["email"+i] == ""){ continue; }//skip if no email
             mailOptions.html = generateEmail(fields.url, fields["name"+i]);
             mailOptions.to = "" + fields["email"+i];
             send(mailOptions);
