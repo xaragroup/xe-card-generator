@@ -51,7 +51,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
                 //cappedString = cleanString.substr(0, 1).toUpperCase() + cleanString.substr(1);
                 //<p class="bg-text">${cappedString}</p> 
                 html += `   <input type="radio" name="card" value="${cardFiles[i]}" id="${cardFiles[i]}"> 
-                            <label styleAttr="${styleName}" for="${cardFiles[i]}" class="bg">    
+                            <label for="${cardFiles[i]}" class="bg">    
                                 <div class="card-images" style="background-image:url(${cardFiles[i]})"></div>    
                             </label>`;
             }
@@ -78,12 +78,12 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
     // now return the html with the dynamic content
 
     return `<!DOCTYPE html>
-<html>
+<html lang="en-GB">
 
 <head>
     <meta charset="UTF-8">
-    <title>Xara Cloud Free E-card Creator, Perfect for B2B and Personal E-cards</title>
-    <meta name="description" content="Create your very own e-card in seconds with xara.com. Create beautiful B2B and Personal e-card designs, using our library of professionally designed e-cards.">
+    <title>Xara Cloud's Free E-card Creator</title>
+    <meta name="description" content="Create your very own e-cards in seconds with xara.com. Create beautiful and Personal ecards, using our library of professionally designed e-cards, send your card through Email or share them via social media or Website URL.">
     <meta name="viewport" content="width=1200">
 
 
@@ -164,7 +164,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label id="addComp" for="imgupload">Click to add your company logo <i>(optional)</i>
             </label>
             <input id="imgupload" type="file" name="filetoupload">
-            <img id="preview" src="">
+            <img id="preview" src="" alt="Preview of your logo uploaded logo">
 
 
             <label id="emailLabel">Add your email address: <i>(required)</i></label>
@@ -175,13 +175,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input id="compInput" type="text" name="company" value="www.example.com">
 -->
             <label id="contactLabel">
-                <input id="contactCheck" type="checkbox" name="contact" unchecked> Yes I want to to learn about more cool stuff from
+                <input id="contactCheck" type="checkbox" name="contact"> Yes I want to to learn about more cool stuff from
                 <a href="http://www.xara.com/?utm_source=ecard_maker&utm_medium=web_app&utm_campaign=christmas_ecard_maker">Xara Cloud</a>
                 <div id="privacy">We will treat your data with care and you can unsubscribe for free anytime. See our <a href="http://xara.cloud/privacy/" title="Privacy Policy" target="_blank">Privacy Policy</a>.</div>
             </label>
 
             <label id="snowEnable">
-                <input id="contactCheck" type="checkbox" name="snow" onclick="toggleSnow();" checked> Apply Snow effect
+                <input type="checkbox" name="snow" onclick="toggleSnow();" checked> Apply Snow effect
             </label>
         </div>
 
@@ -252,9 +252,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="welcomePanel">
         <h1>Create and send your own E-card
         </h1>
-        <img id="cardCover" src="./intro_card_cover.png" onclick="hideWelcomePanel()">    
-
-        </img>
+        <img id="cardCover" src="./intro_card_cover.png" onclick="hideWelcomePanel()" alt="E-cards front cover">
         <div class="button" id="coverButton" onclick="hideWelcomePanel()">Share some love</div>
     </div>
 
