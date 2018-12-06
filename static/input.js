@@ -312,7 +312,7 @@ function sendForm() {
     formData.append("cardContent", cardContent);
 
     xhr.onload = function () {
-        currentURL = cardURL = window.location.href + xhr.response.url;
+        currentURL = cardURL = window.location.origin + "/" + xhr.response.url;
         document.querySelector('#cardURL').textContent = cardURL;
         document.querySelector('#cardURL').parentNode.href = cardURL;
         updateShareLinks(cardURL);
