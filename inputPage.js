@@ -83,7 +83,7 @@ module.exports.generateInputPage = function generateInputPage(backgroundFiles, c
 <head>
     <meta charset="UTF-8">
     <title>Xara Cloud's Free E-card Creator</title>
-    <meta name="description" content="Create your very own Christmas and New years eve e-cards in seconds with xara.com. Create beautiful and Personal ecards, using our library of professionally designed e-cards, send your card through Email or share them via social media or Website URL.">
+    <meta name="description" content="Create your very own animated Christmas and New years eve e-cards in seconds with xara.com. Create beautiful and Personal ecards, using our library of professionally designed e-cards, send your card through Email or share them via social media or Website URL.">
     <meta name="viewport" content="width=1200">
 
 
