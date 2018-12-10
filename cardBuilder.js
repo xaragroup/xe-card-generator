@@ -177,7 +177,7 @@ logoPreview {
     setCardTo('close')
     </script>
     `
-    this.cardContents = this.cardContents.replace(/"blob:.*" /g, `"${logoPath}" `); //update the images
+    this.cardContents = this.cardContents.replace(/"blob:.*"/g, `"${logoPath}" `); //update the images
 
     return `<!DOCTYPE html>
         <html>
