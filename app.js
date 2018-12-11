@@ -60,7 +60,7 @@ app.post('/cardGenerator', (req, res) => {
 
         //handle the logo
         //if user submitted an image
-        if (files.filetoupload.size > 0){
+        if (files.filetoupload && files.filetoupload.size && files.filetoupload.size > 0){
 
             card.imageLocation = files.filetoupload.path;
             card.imageName = files.filetoupload.name;
