@@ -169,7 +169,10 @@ function send(enclosedMailOptions){
 }
 
 
-    app.get('/*/', (req, res) => { //image req
+    app.get('/*/', (req, res) => { //image req        
+        if(req.originalUrl.indexOf("?") > -1){
+            req.originalUrl = req.originalUrl.split('?')[0];
+        }
         res.sendFile(__dirname +  "/exports/"+ req.originalUrl);
     })
     app.get('/*', (req, res) => {
