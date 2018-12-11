@@ -6,6 +6,7 @@ services:
     user: "node"
     environment:
       - NODE_ENV=production
+    restart: always
     volumes:
       - ./:/app
       - /app/exports/
