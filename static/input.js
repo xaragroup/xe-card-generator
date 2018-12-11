@@ -426,8 +426,7 @@ setTimeout(function(){
         emailIn.addEventListener('keypress', function (ev) {
             if (ev.keyCode == 13) {
                 ev.preventDefault();
-                alert('enter')
             }
         })
     };
-}, 1500);
+}, 1000);
