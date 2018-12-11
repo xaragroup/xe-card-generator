@@ -419,3 +419,15 @@ function scrollOptions(event){
         picker.style.left = currOverflow.currentScroll + "px";
     }, 4);
 }
+
+setTimeout(function(){
+    var emailIn = document.querySelector('#emailInput');
+    if (emailIn) {
+        emailIn.addEventListener('keypress', function (ev) {
+            if (ev.keyCode == 13) {
+                ev.preventDefault();
+                alert('enter')
+            }
+        })
+    };
+}, 1500);
