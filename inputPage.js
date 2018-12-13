@@ -244,8 +244,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            <input class="shareForm email" type="email" name="email5" placeholder="#5 Email">
            <input class="shareForm name" type="text" name="name5" placeholder="#5 Name"><br>
 
-           <p id="emailText">Currently we only allow you to share to 5 emails at once. You could share via social media or using the Link. <br> We will change the email to be personalised to the names you entered.</p>            
            <div id="sendEmailButton" onclick="sendEmails()">Send my E-card!</div>
+           <p id="emailText">Currently we only allow you to share to 5 emails at once. You could share via social media or using the Link. <br> We will change the email to be personalised to the names you entered.</p>            
+           
        </form>
     </div>
     
