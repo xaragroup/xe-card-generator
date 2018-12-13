@@ -229,7 +229,7 @@ function setCardTo(state) {
 //AUTOFIT
 
 function isOverflowing(element) {
-    return element.scrollHeight > element.clientHeight; //|| element.scrollWidth > element.clientWidth;
+    return (element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth); //|| element.scrollWidth > element.clientWidth;
 }
 
 function autofit(element) {
@@ -377,16 +377,19 @@ function toggleSnow(){
 
 var currentInterval, latestEv;
 var overflow = document.querySelectorAll('.overflowHandler');
-overflow[0].currentScroll = 0;
-overflow[1].currentScroll = 0;
-overflow[0].addEventListener('mousemove', function(){ latestEv = event; });
-overflow[1].addEventListener('mousemove', function(){ latestEv = event; });
+if(overflow[0] && overflow[1]){
+    overflow[0].currentScroll = 0;
+    overflow[1].currentScroll = 0;
+    overflow[0].addEventListener('mousemove', function(){ latestEv = event; });
+    overflow[1].addEventListener('mousemove', function(){ latestEv = event; });
+    
+    overflow[0].addEventListener('mouseenter', scrollOptions);
+    overflow[1].addEventListener('mouseenter', scrollOptions);
+    
+    overflow[0].addEventListener('mouseleave', stop );
+    overflow[1].addEventListener('mouseleave', stop );
 
-overflow[0].addEventListener('mouseenter', scrollOptions);
-overflow[1].addEventListener('mouseenter', scrollOptions);
-
-overflow[0].addEventListener('mouseleave', stop );
-overflow[1].addEventListener('mouseleave', stop );
+}
 
 function stop(){
     clearInterval(currentInterval);
